@@ -32,8 +32,7 @@
 	<link href="https://fonts.googleapis.com/css?family=DM+Sans|Inter|Space+Mono|Work+Sans|Libre+Franklin&display=swap" rel="stylesheet">
 	<style>
 		body {
-			background: url('../background.jpg') no-repeat center center fixed;
-			background-size: cover;
+			background: linear-gradient(135deg, #6dd5ed, #2193b0); /* 柔和的渐变背景 */
 			margin: 0;
 			padding: 0;
 			font-family: 'Roboto', sans-serif;
@@ -47,6 +46,10 @@
 		.container {
 			text-align: center;
 			animation: fadeIn 2s ease-in-out;
+			background-color: rgba(255, 255, 255, 0.1); /* 半透明容器 */
+			padding: 40px;
+			border-radius: 15px;
+			box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 		}
 
 		.time {
@@ -61,18 +64,21 @@
 		}
 
 		.btn {
-			padding: 10px 25px;
+			padding: 15px 30px;
 			margin: 10px;
 			border: none;
-			border-radius: 5px;
+			border-radius: 8px;
 			cursor: pointer;
 			transition: all 0.3s ease;
 			font-weight: 500;
+			background-color: #3498db; /* 醒目的按钮颜色 */
+			color: #fff;
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 		}
 
 		.btn:hover {
 			transform: translateY(-3px);
-			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+			box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
 		}
 
 		.controls {
@@ -80,7 +86,7 @@
 		}
 
 		.btn.fullscreen {
-			background-color: #f44336;
+			background-color: #e74c3c;
 			color: #fff;
 		}
 

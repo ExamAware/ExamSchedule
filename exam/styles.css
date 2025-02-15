@@ -1,12 +1,11 @@
 body {
-    font-family: 'HarmonyOS Sans SC Regular', 'Roboto', Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background: url('../background.jpg') no-repeat center center fixed;
-    background-size: cover;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2); /* 简洁的渐变背景 */
     animation: fadeIn 1s;
-    color: #e0e0e0;
-    overflow: auto; /* 允许页面滚动 */
+    color: #333;
+    overflow: auto;
 }
 
 /* 隐藏滚动条 */
@@ -19,63 +18,48 @@ body::-webkit-scrollbar {
     to { opacity: 1; }
 }
 
-#fullscreen-btn {
+#fullscreen-btn,
+#settings-btn {
     position: absolute;
     top: 20px;
     right: 20px;
-    padding: 10px 20px;
+    padding: 12px 24px;
     font-size: 1rem;
     cursor: pointer;
-    background-color: #1f1f1f;
-    color: #e0e0e0;
-    border: 1px solid #333;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background-color: #3498db; /* 醒目的按钮颜色 */
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease, transform 0.3s ease;
     z-index: 1001;
 }
 
 #settings-btn {
-    position: absolute;
-    top: 20px;
     right: 120px; /* Fullscreen button's left */
-    padding: 10px 20px;
-    font-size: 1rem;
-    cursor: pointer;
-    background-color: #1f1f1f;
-    color: #e0e0e0;
-    border: 1px solid #333;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    z-index: 1001;
 }
 
-#settings-btn:hover {
-    background-color: #333;
-    transform: scale(1.05);
-}
-
+#settings-btn:hover,
 #fullscreen-btn:hover {
-    background-color: #333;
+    background-color: #2980b9;
     transform: scale(1.05);
 }
 
 .container {
-    padding: 20px;
-    max-width: 1400px; /* 增加主体部分宽度 */
-    margin: auto;
-    background-color: rgba(31, 31, 31, 0.5); /* 使用rgba设置背景透明度 */
-    border-radius: 8px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+    max-width: 1400px;
+    margin: 40px auto;
+    background-color: rgba(255, 255, 255, 0.8); /* 半透明容器 */
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
     font-size: 3.5rem;
     font-weight: bold;
     text-align: left;
-    margin-bottom: 10px;
-    color: #e0e0e0;
+    margin-bottom: 20px;
+    color: #2c3e50;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -84,15 +68,15 @@ h1 {
 #room {
     font-size: 3.5rem;
     font-weight: bold;
-    color: #e0e0e0;
+    color: #2c3e50;
     position: relative;
     right: 0;
-    margin-left: 20px; /* 调整位置使其保持在container中 */
+    margin-left: 20px;
 }
 
 #message {
     font-size: 1.5rem;
-    color: #16a3d1;
+    color: #3498db;
     margin-bottom: 20px;
 }
 
@@ -103,10 +87,11 @@ h1 {
 
 .left-column, .right-column {
     width: 48%;
-    background-color: rgba(31, 31, 31, 0.2);
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 25px;
+    border-radius: 12px;
+    margin: 10px 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 #current-time {
@@ -114,75 +99,59 @@ h1 {
     font-weight: bold;
     text-align: center;
     margin-bottom: 20px;
-    color: #7cc3fb;
+    color: #3498db;
 }
 
 #current-subject, #exam-timing, #remaining-time, #status {
-    font-size: 3rem;
+    font-size: 2.5rem;
     margin: 10px 0;
     text-align: left;
-    color: #e0e0e0;
+    color: #2c3e50;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-    border: 1px solid #333;
-    background-color: rgba(31, 31, 31, 0.5);
+    border: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 th, td {
-    border: 1px solid #333;
-    padding: 8px; /* 缩短行高 */
-    font-size: 2rem;
+    padding: 12px 16px;
+    font-size: 1.5rem;
     text-align: center;
+    border-bottom: 1px solid #ddd;
 }
 
 th {
-    background-color: #333;
-    color: #7cc3fb;
+    background-color: #3498db;
+    color: #fff;
     font-weight: bold;
-    border-bottom: 2px solid #2b71ad;
+    border-bottom: 2px solid #2980b9;
 }
 
 .exam-status-进行中 td {
-    color: #5ba838 !important; /* 绿色字体 */
+    color: #27ae60 !important;
 }
 
 .exam-status-即将开始 td {
-    color: #fe9901 !important; /* 橙色字体 */
+    color: #f39c12 !important;
 }
 
 .exam-status-已结束 td {
-    color: #ec0434 !important; /* 红色字体 */
+    color: #e74c3c !important;
 }
 
 .exam-status-空闲 td {
-    color: blue !important; /* 蓝色字体 */
+    color: #3498db !important;
 }
 
 tr:hover {
-    background-color: #333;
-}
-
-table {
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-td {
-    border-bottom: 1px solid #333;
-}
-
-td:first-child {
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
-}
-
-td:last-child {
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
+    background-color: #f9f9f9;
 }
 
 #settings-modal {
@@ -200,9 +169,9 @@ td:last-child {
 }
 
 #settings-modal-content {
-    background-color: #1f1f1f;
+    background-color: #fff;
     margin: 5% auto;
-    padding: 20px;
+    padding: 30px;
     border: 1px solid #888;
     width: 80%;
     max-width: 600px;
@@ -210,12 +179,12 @@ td:last-child {
 }
 
 #settings-modal-content label {
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 #settings-modal-content input[type="number"],
 #settings-modal-content input[type="text"] {
-    font-size: 2rem;
+    font-size: 1.5rem;
     padding: 10px;
     margin-top: 10px;
     margin-bottom: 20px;
@@ -223,15 +192,13 @@ td:last-child {
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #121212;
-    color: #e0e0e0;
 }
 
 #settings-modal-content button {
-    padding: 10px 20px;
-    font-size: 2rem;
+    padding: 12px 24px;
+    font-size: 1.2rem;
     cursor: pointer;
-    background-color: #93b4f7;
+    background-color: #3498db;
     color: white;
     border: none;
     border-radius: 5px;
@@ -240,14 +207,14 @@ td:last-child {
 }
 
 #settings-modal-content button:hover {
-    background-color: #45a049;
+    background-color: #2980b9;
 }
 
 #close-settings-btn {
-    padding: 10px 20px;
-    font-size: 2rem;
+    padding: 12px 24px;
+    font-size: 1.2rem;
     cursor: pointer;
-    background-color: #d9534f;
+    background-color: #e74c3c;
     color: white;
     border: none;
     border-radius: 5px;
@@ -256,5 +223,5 @@ td:last-child {
 }
 
 #close-settings-btn:hover {
-    background-color: #c9302c;
+    background-color: #c0392b;
 }

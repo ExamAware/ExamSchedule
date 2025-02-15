@@ -8,15 +8,17 @@
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <button id="settings-btn">设置</button>
-    <button id="fullscreen-btn">全屏</button>
-    <div class="container">
+    <header>
+        <button id="settings-btn">设置</button>
+        <button id="fullscreen-btn">全屏</button>
+    </header>
+    <main class="container">
         <h1 id="examName">
             考试安排
             <span id="room"></span>
         </h1>
         <p id="message"></p>
-        <div class="content">
+        <section class="content">
             <div class="left-column">
                 <div id="current-time"></div>
                 <div id="current-subject"></div>
@@ -38,8 +40,8 @@
                     </tbody>
                 </table>
             </div>
-        </div>
-    </div>
+        </section>
+    </main>
     <!-- Settings Modal -->
     <div id="settings-modal">
         <div id="settings-modal-content">
