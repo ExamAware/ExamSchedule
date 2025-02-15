@@ -50,7 +50,7 @@ body::-webkit-scrollbar {
     padding: 30px;
     max-width: 1400px;
     margin: 40px auto;
-    background-color: rgba(255, 255, 255, 0.8); /* 半透明容器 */
+    background-color: rgba(255, 255, 255, 0.5); /* 半透明容器 */
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
@@ -88,7 +88,7 @@ h1 {
 
 .left-column, .right-column {
     width: 48%;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.3);
     padding: 25px;
     border-radius: 12px;
     margin: 10px 0;
