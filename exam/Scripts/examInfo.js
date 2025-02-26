@@ -7,53 +7,32 @@ document.addEventListener("DOMContentLoaded", () => {
     const remainingTimeElem = document.getElementById("remaining-time");
     const statusElem = document.getElementById("status");
     const examTableBodyElem = document.getElementById("exam-table-body");
-    const fullscreenBtn = document.getElementById("fullscreen-btn");
-    const settingsBtn = document.getElementById("settings-btn");
-    const settingsModal = document.getElementById("settings-modal");
-    const closeSettingsBtn = document.getElementById("close-settings-btn");
-    const saveSettingsBtn = document.getElementById("save-settings-btn");
-    const offsetTimeInput = document.getElementById("offset-time");
-    const roomInput = document.getElementById("room-input");
-    const roomElem = document.getElementById("room");
-    const zoomInput = document.getElementById("zoom-input");
-
-    let offsetTime = getCookie("offsetTime") || 0;
-    let room = getCookie("room") || "";
-    let zoomLevel = getCookie("zoomLevel") || 1;
-
-    offsetTime = parseInt(offsetTime);
-    roomElem.textContent = room;
+    const roomElem = document.getElementById("room"); // 添加这一行
+    let offsetTime = getCookie("offsetTime") || 0; // 添加这一行
 
     function fetchData() {
-        return fetch('exam_config.json', { cache: "no-store" }) // 不保留缓存
+        return fetch('exam_config.json', { cache: "no-store" })
             .then(response => response.json())
             .then(data => {
                 displayExamInfo(data);
                 updateCurrentTime();
                 updateExamInfo(data);
-                setInterval(() => updateCurrentTime(), 1000); // Update current time every second
-                setInterval(() => updateExamInfo(data), 1000); // Update exam info every second
+                setInterval(() => updateCurrentTime(), 1000);
+                setInterval(() => updateExamInfo(data), 1000);
             })
             .catch(error => console.error('Error fetching exam data:', error));
     }
 
     function displayExamInfo(data) {
-        // Display exam name
         const examNameText = data.examName;
         const roomText = roomElem.textContent;
         examNameElem.innerHTML = `${examNameText} <span id="room">${roomText}</span>`;
-        // Display message
         messageElem.textContent = data.message;
     }
 
     function updateCurrentTime() {
         const now = new Date(new Date().getTime() + offsetTime * 1000);
         currentTimeElem.textContent = now.toLocaleTimeString('zh-CN', { hour12: false });
-    }
-
-    function formatTimeWithoutSeconds(time) {
-        // Convert time to string and remove seconds if present
-        return time.slice(0, -3);
     }
 
     function updateExamInfo(data) {
@@ -135,7 +114,6 @@ document.addEventListener("DOMContentLoaded", () => {
             statusElem.style.color = "#3946AF";
         }
 
-        // Update next exams table
         examTableBodyElem.innerHTML = "";
         data.examInfos.forEach(exam => {
             const start = new Date(exam.start);
@@ -158,65 +136,6 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
             examTableBodyElem.appendChild(row);
         });
-    }
-
-    // Fullscreen functionality
-    fullscreenBtn.addEventListener("click", () => {
-        if (!document.fullscreenElement) {
-            document.documentElement.requestFullscreen();
-        } else {
-            if (document.exitFullscreen) {
-                document.exitFullscreen();
-            }
-        }
-    });
-
-    // Open settings modal
-    settingsBtn.addEventListener("click", () => {
-        offsetTimeInput.value = offsetTime;
-        roomInput.value = room;
-        zoomInput.value = zoomLevel;
-        settingsModal.style.display = "block";
-    });
-
-    // Close settings modal
-    closeSettingsBtn.addEventListener("click", () => {
-        settingsModal.style.display = "none";
-    });
-
-    // Save settings
-    saveSettingsBtn.addEventListener("click", () => {
-        offsetTime = parseInt(offsetTimeInput.value);
-        room = roomInput.value;
-        zoomLevel = parseFloat(zoomInput.value);
-        setCookie("offsetTime", offsetTime, 365);
-        setCookie("room", room, 365);
-        setCookie("zoomLevel", zoomLevel, 365);
-        roomElem.textContent = room;
-        document.body.style.zoom = zoomLevel;
-        settingsModal.style.display = "none";
-    });
-
-    document.body.style.zoom = zoomLevel;
-
-    // Utility function to set a cookie
-    function setCookie(name, value, days) {
-        const d = new Date();
-        d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
-        const expires = "expires=" + d.toUTCString();
-        document.cookie = name + "=" + value + ";" + expires + ";path=/";
-    }
-
-    // Utility function to get a cookie
-    function getCookie(name) {
-        const nameEQ = name + "=";
-        const ca = document.cookie.split(';');
-        for (let i = 0; i < ca.length; i++) {
-            let c = ca[i];
-            while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-        }
-        return null;
     }
 
     fetchData();
