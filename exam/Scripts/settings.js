@@ -23,7 +23,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     closeSettingsBtn.addEventListener("click", () => {
-        settingsModal.style.display = "none";
+        settingsModal.classList.add("fade-out");
+        setTimeout(() => {
+            settingsModal.style.display = "none";
+            settingsModal.classList.remove("fade-out");
+        }, 300);
     });
 
     saveSettingsBtn.addEventListener("click", () => {
@@ -35,7 +39,13 @@ document.addEventListener("DOMContentLoaded", () => {
         setCookie("zoomLevel", zoomLevel, 365);
         roomElem.textContent = room;
         document.body.style.zoom = zoomLevel;
-        settingsModal.style.display = "none";
+        settingsModal.classList.add("fade-out");
+        setTimeout(() => {
+            settingsModal.style.display = "none";
+            settingsModal.classList.remove("fade-out");
+        }, 300);
+        // 立即生效时间偏移
+        location.reload();
     });
 
     document.body.style.zoom = zoomLevel;

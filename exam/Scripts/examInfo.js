@@ -7,8 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const remainingTimeElem = document.getElementById("remaining-time");
     const statusElem = document.getElementById("status");
     const examTableBodyElem = document.getElementById("exam-table-body");
-    const roomElem = document.getElementById("room"); // 添加这一行
-    let offsetTime = getCookie("offsetTime") || 0; // 添加这一行
+    const roomElem = document.getElementById("room");
+    let offsetTime = getCookie("offsetTime") || 0;
 
     function fetchData() {
         return fetch('exam_config.json', { cache: "no-store" })
