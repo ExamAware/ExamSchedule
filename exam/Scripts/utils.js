@@ -19,3 +19,21 @@ function getCookie(name) {
 function formatTimeWithoutSeconds(time) {
     return time.slice(0, -3);
 }
+
+const errorSystem = {
+    show: function(message) {
+        try {
+            const container = document.querySelector('.error-container');
+            const content = document.getElementById('errorMessage');
+            content.textContent = message;
+            container.style.display = 'flex';
+            setTimeout(this.hide, 5000);
+        } catch(e) {
+            console.error('错误提示系统异常:', e);
+        }
+    },
+    hide: function() {
+        const container = document.querySelector('.error-container');
+        if (container) container.style.display = 'none';
+    }
+};

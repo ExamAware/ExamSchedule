@@ -16,37 +16,53 @@ document.addEventListener("DOMContentLoaded", () => {
     roomElem.textContent = room;
 
     settingsBtn.addEventListener("click", () => {
-        offsetTimeInput.value = offsetTime;
-        roomInput.value = room;
-        zoomInput.value = zoomLevel;
-        settingsModal.style.display = "block";
+        try {
+            offsetTimeInput.value = offsetTime;
+            roomInput.value = room;
+            zoomInput.value = zoomLevel;
+            settingsModal.style.display = "block";
+        } catch (e) {
+            errorSystem.show('打开设置失败: ' + e.message);
+        }
     });
 
     closeSettingsBtn.addEventListener("click", () => {
-        settingsModal.classList.add("fade-out");
-        setTimeout(() => {
-            settingsModal.style.display = "none";
-            settingsModal.classList.remove("fade-out");
-        }, 300);
+        try {
+            settingsModal.classList.add("fade-out");
+            setTimeout(() => {
+                settingsModal.style.display = "none";
+                settingsModal.classList.remove("fade-out");
+            }, 300);
+        } catch (e) {
+            errorSystem.show('关闭设置失败: ' + e.message);
+        }
     });
 
     saveSettingsBtn.addEventListener("click", () => {
-        offsetTime = parseInt(offsetTimeInput.value);
-        room = roomInput.value;
-        zoomLevel = parseFloat(zoomInput.value);
-        setCookie("offsetTime", offsetTime, 365);
-        setCookie("room", room, 365);
-        setCookie("zoomLevel", zoomLevel, 365);
-        roomElem.textContent = room;
-        document.body.style.zoom = zoomLevel;
-        settingsModal.classList.add("fade-out");
-        setTimeout(() => {
-            settingsModal.style.display = "none";
-            settingsModal.classList.remove("fade-out");
-        }, 300);
-        // 立即生效时间偏移
-        location.reload();
+        try {
+            offsetTime = parseInt(offsetTimeInput.value);
+            room = roomInput.value;
+            zoomLevel = parseFloat(zoomInput.value);
+            setCookie("offsetTime", offsetTime, 365);
+            setCookie("room", room, 365);
+            setCookie("zoomLevel", zoomLevel, 365);
+            roomElem.textContent = room;
+            document.body.style.zoom = zoomLevel;
+            settingsModal.classList.add("fade-out");
+            setTimeout(() => {
+                settingsModal.style.display = "none";
+                settingsModal.classList.remove("fade-out");
+            }, 300);
+            // 立即生效时间偏移
+            location.reload();
+        } catch (e) {
+            errorSystem.show('保存设置失败: ' + e.message);
+        }
     });
 
-    document.body.style.zoom = zoomLevel;
+    try {
+        document.body.style.zoom = zoomLevel;
+    } catch (e) {
+        errorSystem.show('初始化缩放失败: ' + e.message);
+    }
 });
