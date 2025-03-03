@@ -7,13 +7,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const roomInput = document.getElementById("room-input");
     const roomElem = document.getElementById("room");
     const zoomInput = document.getElementById("zoom-input");
+    const themeToggle = document.getElementById("theme-toggle");
+    const themeLink = document.getElementById("theme-link");
 
     let offsetTime = getCookie("offsetTime") || 0;
     let room = getCookie("room") || "";
     let zoomLevel = getCookie("zoomLevel") || 1;
+    let theme = getCookie("theme") || "dark";
 
     offsetTime = parseInt(offsetTime);
     roomElem.textContent = room;
+
+    if (theme === "light") {
+        themeLink.href = "Styles/light.css";
+        themeToggle.checked = true;
+    } else {
+        themeLink.href = "Styles/dark.css";
+        themeToggle.checked = false;
+    }
 
     settingsBtn.addEventListener("click", () => {
         try {
@@ -43,11 +54,14 @@ document.addEventListener("DOMContentLoaded", () => {
             offsetTime = parseInt(offsetTimeInput.value);
             room = roomInput.value;
             zoomLevel = parseFloat(zoomInput.value);
+            theme = themeToggle.checked ? "light" : "dark";
             setCookie("offsetTime", offsetTime, 365);
             setCookie("room", room, 365);
             setCookie("zoomLevel", zoomLevel, 365);
+            setCookie("theme", theme, 365);
             roomElem.textContent = room;
             document.body.style.zoom = zoomLevel;
+            themeLink.href = theme === "light" ? "Styles/light.css" : "Styles/dark.css";
             settingsModal.classList.add("fade-out");
             setTimeout(() => {
                 settingsModal.style.display = "none";
@@ -58,6 +72,11 @@ document.addEventListener("DOMContentLoaded", () => {
         } catch (e) {
             errorSystem.show('保存设置失败: ' + e.message);
         }
+    });
+
+    themeToggle.addEventListener("change", () => {
+        const theme = themeToggle.checked ? "light" : "dark";
+        themeLink.href = theme === "light" ? "Styles/light.css" : "Styles/dark.css";
     });
 
     try {

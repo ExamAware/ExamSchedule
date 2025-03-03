@@ -2,14 +2,13 @@ body {
     font-family: 'HarmonyOS Sans SC Regular', 'Roboto', Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: url('../../background.jpg') no-repeat center center fixed; /* 更新路径 */
+    background: url('../../background.jpg') no-repeat center center fixed;
     background-size: cover;
     animation: fadeIn 1s;
-    color: #e0e0e0;
-    overflow: auto; /* 允许页面滚动 */
+    color: #333;
+    overflow: auto;
 }
 
-/* 隐藏滚动条 */
 body::-webkit-scrollbar {
     display: none;
 }
@@ -25,9 +24,9 @@ body::-webkit-scrollbar {
     padding: 10px 20px;
     font-size: 1rem;
     cursor: pointer;
-    background-color: #1f1f1f;
-    color: #e0e0e0;
-    border: 1px solid #333;
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease, transform 0.3s ease;
@@ -39,19 +38,19 @@ body::-webkit-scrollbar {
 }
 
 #settings-btn {
-    right: 120px; /* Fullscreen button's left */
+    right: 120px;
 }
 
 #settings-btn:hover, #fullscreen-btn:hover {
-    background-color: #333;
+    background-color: #ccc;
     transform: scale(1.05);
 }
 
 .container {
     padding: 20px;
-    max-width: 1400px; /* 增加主体部分宽度 */
+    max-width: 1400px;
     margin: auto;
-    background-color: rgba(255, 255, 255, 0); /* 使用rgba设置背景透明度为80% */
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 h1 {
@@ -59,7 +58,7 @@ h1 {
     font-weight: bold;
     text-align: left;
     margin-bottom: 10px;
-    color: #e0e0e0;
+    color: #333;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -68,10 +67,10 @@ h1 {
 #room {
     font-size: 3.5rem;
     font-weight: bold;
-    color: #e0e0e0;
+    color: #333;
     position: relative;
     right: 0;
-    margin-left: 20px; /* 调整位置使其保持在container中 */
+    margin-left: 20px;
 }
 
 #message {
@@ -83,18 +82,18 @@ h1 {
 .content {
     display: flex;
     justify-content: space-between;
-    gap: 3px; /* 板块间隔3px */
+    gap: 3px;
 }
 
 .left-column, .right-column {
     width: 48%;
     display: flex;
     flex-direction: column;
-    gap: 3px; /* 板块间隔3px */
+    gap: 3px;
 }
 
 .clock-section, .info-section, .right-column {
-    background-color: rgba(31, 31, 31, 0.5); /* 亚克力效果 */
+    background-color: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(10px);
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -104,7 +103,7 @@ h1 {
 #current-time {
     font-size: 8rem;
     text-align: center;
-    color: #7cc3fb;
+    color: #333;
     margin: 0;
     font-weight: bold;
 }
@@ -113,49 +112,49 @@ h1 {
     font-size: 3rem;
     margin: 10px 0;
     text-align: left;
-    color: #e0e0e0;
+    color: #333;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-    border: 1px solid #333;
-    background-color: rgba(31, 31, 31, 0.5);
+    border: 1px solid #ccc;
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 th, td {
-    border: 1px solid #333;
-    padding: 2px; /* 缩短行高 */
+    border: 1px solid #ccc;
+    padding: 2px;
     font-size: 2rem;
     text-align: center;
 }
 
 th {
-    background-color: #333;
-    color: #7cc3fb;
+    background-color: #f0f0f0;
+    color: #333;
     font-weight: bold;
-    border-bottom: 2px solid #2b71ad;
+    border-bottom: 2px solid #ccc;
 }
 
 .exam-status-进行中 td {
-    color: #5ba838 !important; /* 绿色字体 */
+    color: #5ba838 !important;
 }
 
 .exam-status-即将开始 td {
-    color: #fe9901 !important; /* 橙色字体 */
+    color: #fe9901 !important;
 }
 
 .exam-status-已结束 td {
-    color: #ec0434 !important; /* 红色字体 */
+    color: #ec0434 !important;
 }
 
 .exam-status-空闲 td {
-    color: blue !important; /* 蓝色字体 */
+    color: blue !important;
 }
 
 tr:hover {
-    background-color: #333;
+    background-color: #f0f0f0;
 }
 
 table {
@@ -164,7 +163,7 @@ table {
 }
 
 td {
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid #ccc;
 }
 
 td:first-child {
@@ -186,17 +185,16 @@ td:last-child {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.4);
     padding-top: 60px;
 }
 
 #settings-modal-content {
-    background: rgba(31, 31, 31, 0.95);
+    background: rgba(255, 255, 255, 0.95);
     padding: 25px;
     margin: 25px auto;
     border-radius: 12px;
-    border: 1px solid #444;
+    border: 1px solid #ccc;
     backdrop-filter: blur(8px);
     max-width: 600px;
     animation: fadeIn 0.5s ease;
@@ -218,7 +216,7 @@ td:last-child {
 
 #settings-modal-content h3 {
     margin: 0 0 20px;
-    color: #e0e0e0;
+    color: #333;
     font-size: 20px;
 }
 
@@ -228,7 +226,7 @@ td:last-child {
     gap: 10px;
     margin: 12px 0;
     font-size: 16px;
-    color: #b0b0b0;
+    color: #666;
 }
 
 #settings-modal-content input[type="number"],
@@ -239,10 +237,10 @@ td:last-child {
     margin-bottom: 20px;
     width: 100%;
     box-sizing: border-box;
-    border: 1px solid #555;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #222;
-    color: #e0e0e0;
+    background-color: #fff;
+    color: #333;
 }
 
 #settings-modal-content input:focus {
