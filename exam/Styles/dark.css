@@ -231,8 +231,16 @@ td:last-child {
     color: #b0b0b0;
 }
 
+#settings-modal-content label[for="offset-time"],
+#settings-modal-content label[for="room-input"],
+#settings-modal-content label[for="zoom-input"] {
+    justify-content: space-between;
+}
+
 #settings-modal-content input[type="number"],
 #settings-modal-content input[type="text"] {
+    flex-grow: 1;
+    margin-left: 10px;
     font-size: 1.5rem;
     padding: 10px;
     margin-top: 10px;
@@ -379,5 +387,6 @@ input:checked + .slider:before {
 .theme-toggle-container {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 10px;
 }
