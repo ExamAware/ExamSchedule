@@ -11,7 +11,7 @@ function updateDisplay() {
             timeDisplay.textContent = formatTime(remain);
             timeDesc.textContent = '剩余时间';
         } else {
-            statusLabel.textContent = '课间休息中';
+            statusLabel.textContent = '休息中';
             var nextCourse = getNextCourse();
             if (nextCourse) {
                 var startTime = parseTime(nextCourse.start),

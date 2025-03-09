@@ -39,8 +39,8 @@ function loadSettingsFromCookies() {
                     <td><input type="number" value="${reminder.time}" placeholder="${reminder.condition === 'start' || reminder.condition === 'end' ? '-' : '分钟'}" ${reminder.condition === 'start' || reminder.condition === 'end' ? 'disabled' : ''}></td>
                     <td>
                         <select>
-                            <option value="classStart" ${reminder.audio === 'classStart' ? 'selected' : ''}>上课铃声</option>
-                            <option value="classEnd" ${reminder.audio === 'classEnd' ? 'selected' : ''}>下课铃声</option>
+                            <option value="classStart" ${reminder.audio === 'classStart' ? 'selected' : ''}>考试开始铃声</option>
+                            <option value="classEnd" ${reminder.audio === 'classEnd' ? 'selected' : ''}>考试结束铃声</option>
                         </select>
                     </td>
                     <td><button onclick="removeReminder(this)">删除</button></td>

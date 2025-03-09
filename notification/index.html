@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>课程状态系统完整版</title>
+    <title>考试看板—广播适配</title>
     <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
@@ -16,6 +16,7 @@
     <div class="container">
         <div class="control-bar">
             <button class="control-btn" id="fullscreen-btn" onclick="toggleFullscreen()">全屏</button>
+            <button class="control-btn" id="exitFullscreenBtn" onclick="toggleFullscreen()" style="display: none;">退出全屏</button>
         </div>
 
         <div class="status-box">
@@ -49,7 +50,7 @@
 
         <table class="schedule-table" id="scheduleTable">
             <tr>
-                <th>课程名称</th>
+                <th>科目</th>
                 <th>时间段</th>
                 <th>状态</th>
             </tr>

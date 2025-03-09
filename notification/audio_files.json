@@ -1,0 +1,10 @@
+{
+    "上课铃": "audio/classstart.mp3",
+    "距离结束还有15分钟": "audio/15min_left.mp3",
+    "距离结束还有30分钟": "audio/30min_left.mp3",
+    "考试开始": "audio/start.mp3",
+    "考试结束": "audio/end.mp3",
+    "核对信息": "audio/hedui_noeng.mp3",
+    "检场": "audio/jinchang.mp3",
+    "展示科目袋": "audio/zhanshikemudai.mp3"
+}

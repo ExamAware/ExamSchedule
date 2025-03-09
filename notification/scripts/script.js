@@ -18,40 +18,47 @@ function safeUpdate() {
 // 修改：全屏切换函数
 function toggleFullscreen() {
     try {
-        isFullscreen = !isFullscreen;
-        document.body.classList.toggle('fullscreen-mode', isFullscreen);
-        if (isFullscreen) {
-            document.querySelector('.settings-panel').style.display = 'none';
-            document.querySelector('.schedule-table').style.display = 'none';
-            document.querySelector('.container').style.width = '100%';
-            document.querySelector('.container').style.height = '100%';
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen().then(() => {
+                isFullscreen = true;
+                document.body.classList.add('fullscreen-mode');
+                adjustFontSize();
+                document.getElementById('exitFullscreenBtn').style.display = 'block';
+            });
         } else {
-            document.querySelector('.settings-panel').style.display = '';
-            document.querySelector('.schedule-table').style.display = '';
-            document.querySelector('.container').style.width = '';
-            document.querySelector('.container').style.height = '';
+            document.exitFullscreen().then(() => {
+                isFullscreen = false;
+                document.body.classList.remove('fullscreen-mode');
+                adjustFontSize();
+                document.getElementById('exitFullscreenBtn').style.display = 'none';
+            });
         }
     } catch (e) {
         errorSystem.show('全屏切换失败: ' + e.message, 'error');
     }
 }
 
-function exitFullscreen() {
-    try {
-        isFullscreen = false;
-        document.body.classList.remove('fullscreen-mode');
-        document.querySelector('.settings-panel').style.display = '';
-        document.querySelector('.schedule-table').style.display = '';
-        document.querySelector('.container').style.width = '';
-        document.querySelector('.container').style.height = '';
-    } catch (e) {
-        errorSystem.show('退出全屏失败: ' + e.message, 'error');
+function adjustFontSize() {
+    var elements = document.querySelectorAll('.time-display, .status-label');
+    elements.forEach(element => {
+        if (isFullscreen) {
+            element.style.fontSize = '10vw';
+        } else {
+            element.style.fontSize = '';
+        }
+    });
+    var countdownElement = document.getElementById('timeDisplay');
+    if (isFullscreen) {
+        countdownElement.style.fontSize = '20vw';
+    } else {
+        countdownElement.style.fontSize = '';
     }
 }
 
 function addReminder() {
     var table = document.getElementById('reminderTable');
     var row = table.insertRow(table.rows.length - 1);
+    row.draggable = true;
     row.innerHTML = `
         <td>
             <select>
@@ -64,17 +71,17 @@ function addReminder() {
         </td>
         <td><input type="number" placeholder="分钟" disabled></td>
         <td>
-            <select>
-                <option value="classStart">上课铃声</option>
-                <option value="classEnd">下课铃声</option>
-            </select>
+            <select name="audioSelect"></select>
         </td>
         <td><button onclick="removeReminder(this)">删除</button></td>
+        <td class="drag-handle">☰</td>
     `;
     row.cells[0].querySelector('select').addEventListener('change', function() {
         row.cells[1].querySelector('input').disabled = this.value === 'start' || this.value === 'end';
         row.cells[1].querySelector('input').placeholder = this.value === 'start' || this.value === 'end' ? '-' : '分钟';
     });
+    audioController.populateAudioSelect();
+    addDragAndDropHandlers(row);
 }
 
 function removeReminder(button) {
@@ -148,7 +155,7 @@ function loadRemindersToQueue(reminders) {
                         return;
                 }
             } else {
-                console.error('当前没有课程信息');
+                errorSystem.show('当前没有课程信息', 'info');
                 return;
             }
         }
@@ -175,6 +182,7 @@ function init() {
         var table = document.getElementById('reminderTable');
         reminders.forEach(function(reminder) {
             var row = table.insertRow(table.rows.length - 1);
+            row.draggable = true;
             row.innerHTML = `
                 <td>
                     <select>
@@ -187,17 +195,19 @@ function init() {
                 </td>
                 <td><input type="number" value="${reminder.time}" placeholder="${reminder.condition === 'start' || reminder.condition === 'end' ? '-' : '分钟'}" ${reminder.condition === 'start' || reminder.condition === 'end' ? 'disabled' : ''}></td>
                 <td>
-                    <select>
-                        <option value="classStart" ${reminder.audio === 'classStart' ? 'selected' : ''}>上课铃声</option>
-                        <option value="classEnd" ${reminder.audio === 'classEnd' ? 'selected' : ''}>下课铃声</option>
+                    <select name="audioSelect">
+                        <option value="classStart" ${reminder.audio === 'classStart' ? 'selected' : ''}>考试开始铃声</option>
+                        <option value="classEnd" ${reminder.audio === 'classEnd' ? 'selected' : ''}>考试结束铃声</option>
                     </select>
                 </td>
                 <td><button onclick="removeReminder(this)">删除</button></td>
+                <td class="drag-handle">☰</td>
             `;
             row.cells[0].querySelector('select').addEventListener('change', function() {
                 row.cells[1].querySelector('input').disabled = this.value === 'start' || this.value === 'end';
                 row.cells[1].querySelector('input').placeholder = this.value === 'start' || this.value === 'end' ? '-' : '分钟';
             });
+            addDragAndDropHandlers(row);
         });
         // 启动安全更新循环
         safeUpdate();
@@ -215,3 +225,41 @@ window.onbeforeunload = function () {
     if (timer) clearTimeout(timer);
 };
 init();
+
+function addDragAndDropHandlers(row) {
+    row.addEventListener('dragstart', function(e) {
+        e.dataTransfer.setData('text/plain', e.target.rowIndex);
+        e.target.classList.add('dragging');
+    });
+
+    row.addEventListener('dragover', function(e) {
+        e.preventDefault();
+        var draggingRow = document.querySelector('.dragging');
+        if (draggingRow && draggingRow !== e.target) {
+            var table = document.getElementById('reminderTable');
+            var rows = Array.from(table.rows).slice(1, -1);
+            var targetRow = rows.find(row => row === e.target || row.contains(e.target));
+            if (targetRow && targetRow.parentNode === table) {
+                var targetIndex = targetRow.rowIndex;
+                var draggingIndex = draggingRow.rowIndex;
+                if (draggingIndex < targetIndex) {
+                    table.insertBefore(draggingRow, targetRow.nextSibling);
+                } else {
+                    table.insertBefore(draggingRow, targetRow);
+                }
+            }
+        }
+    });
+
+    row.addEventListener('drop', function(e) {
+        e.preventDefault();
+        var draggingRow = document.querySelector('.dragging');
+        if (draggingRow) {
+            draggingRow.classList.remove('dragging');
+        }
+    });
+
+    row.addEventListener('dragend', function(e) {
+        e.target.classList.remove('dragging');
+    });
+}

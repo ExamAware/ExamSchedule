@@ -80,10 +80,13 @@ function updateScheduleTable() {
             row.className = '';
             if (now >= start && now <= end) {
                 row.className = 'current-class';
+                row.cells[2].textContent = '进行中';
             } else if (now < start) {
                 row.className = 'future-class';
+                row.cells[2].textContent = '即将开始';
             } else {
                 row.className = 'past-class';
+                row.cells[2].textContent = '已结束';
             }
         }
     } catch (e) {

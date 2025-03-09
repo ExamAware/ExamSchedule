@@ -302,6 +302,18 @@ body {
     color: #57606f;
     font-weight: 600;
 }
+.reminder-table td {
+    padding: 12px;
+    border-bottom: 1px solid #f1f3f6;
+    text-align: left;
+    cursor: move; /* 添加拖拽光标 */
+}
+.reminder-table td.drag-handle {
+    cursor: grab; /* 添加拖拽光标 */
+}
+.reminder-table tr.dragging {
+    opacity: 0.5; /* 拖拽时透明度 */
+}
 .reminder-table td input, .reminder-table td select {
     width: 100%;
     padding: 8px;

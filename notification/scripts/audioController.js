@@ -1,21 +1,26 @@
 var audioController = (function() {
     var audioPool = [];
     var maxPoolSize = 3;
-    var soundFiles = {
-        classStart: 'class_start.mp3',
-        classEnd: 'class_end.mp3'
-    };
+    var soundFiles = {};
+    var audioSelectPopulated = false;
 
     function init() {
-        try {
-            Object.keys(soundFiles).forEach(function(type) {
-                for (var i = 0; i < 2; i++) {
-                    createAudio(type);
+        fetch('audio_files.json')
+            .then(response => response.json())
+            .then(data => {
+                soundFiles = data;
+                Object.keys(soundFiles).forEach(function(type) {
+                    for (var i = 0; i < 2; i++) {
+                        createAudio(type);
+                    }
+                });
+                if (!audioSelectPopulated) {
+                    populateAudioSelect();
+                    audioSelectPopulated = true;
                 }
-            });
-        } catch(e) {
-            errorSystem.show('音频初始化失败: ' + e.message, 'error');
-        }
+                removeInvalidAudioOptions();
+            })
+            .catch(e => errorSystem.show('音频文件加载失败: ' + e.message, 'error'));
     }
 
     function createAudio(type) {
@@ -69,10 +74,35 @@ var audioController = (function() {
         return soundFiles[type];
     }
 
+    function populateAudioSelect() {
+        var selects = document.querySelectorAll('select[name="audioSelect"]');
+        selects.forEach(select => {
+            Object.keys(soundFiles).forEach(function(type) {
+                var option = document.createElement('option');
+                option.value = type;
+                option.textContent = type;
+                select.appendChild(option);
+            });
+        });
+    }
+
+    function removeInvalidAudioOptions() {
+        var selects = document.querySelectorAll('select[name="audioSelect"]');
+        selects.forEach(select => {
+            Array.from(select.options).forEach(option => {
+                if (!soundFiles[option.value]) {
+                    option.remove();
+                }
+            });
+        });
+    }
+
     return {
         init: init,
         play: play,
-        getAudioSrc: getAudioSrc
+        getAudioSrc: getAudioSrc,
+        populateAudioSelect: populateAudioSelect,
+        removeInvalidAudioOptions: removeInvalidAudioOptions
     };
 })();
 

@@ -22,13 +22,15 @@ var reminderQueue = (function() {
     function executeReminder(reminder) {
         if (audioCache[reminder.audio]) {
             audioCache[reminder.audio].play();
-        } else {
+        } else if (audioController.getAudioSrc(reminder.audio)) {
             audioController.play(reminder.audio);
+        } else {
+            errorSystem.show('音频文件不存在: ' + reminder.audio, 'error');
         }
     }
 
     function preloadAudio(audioType) {
-        if (!audioCache[audioType]) {
+        if (!audioCache[audioType] && audioController.getAudioSrc(audioType)) {
             var audio = new Audio(audioController.getAudioSrc(audioType));
             audioCache[audioType] = audio;
         }
