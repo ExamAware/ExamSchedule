@@ -52,6 +52,10 @@
 
 #### 电子钟表界面   
 
+### 广播模式
+
+![notification](/assets/notification.jpeg)
+
 ![time](/assets/time.png)
 
 ## 如何部署？   
