@@ -8,7 +8,7 @@ document.getElementById('importJson').addEventListener('change', function(event)
                     var config = JSON.parse(e.target.result);
                     applyConfig(config);
                 } catch (err) {
-                    errorSystem.show('导入配置失败: ' + err.message);
+                    errorSystem.show('导入配置失败: ' + err.message, 'error');
                 }
             };
             reader.readAsText(file);
@@ -40,14 +40,8 @@ function applyConfig(config) {
         if (config.reminders) {
             localStorage.setItem('reminders', JSON.stringify(config.reminders));
         }
-        if (config.classBell !== undefined) {
-            localStorage.setItem('classBell', config.classBell);
-        }
-        if (config.breakBell !== undefined) {
-            localStorage.setItem('breakBell', config.breakBell);
-        }
     } catch (err) {
-        errorSystem.show('应用配置失败: ' + err.message);
+        errorSystem.show('应用配置失败: ' + err.message, 'error');
     }
 }
 
@@ -57,9 +51,7 @@ function exportConfig() {
         examName: document.title,
         message: document.getElementById('statusLabel').textContent,
         room: document.getElementById('timeDescription').textContent.replace('考场: ', ''),
-        reminders: JSON.parse(localStorage.getItem('reminders') || '[]'),
-        classBell: localStorage.getItem('classBell') === 'true',
-        breakBell: localStorage.getItem('breakBell') === 'true'
+        reminders: JSON.parse(localStorage.getItem('reminders') || '[]')
     };
     var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(config));
     var downloadAnchorNode = document.createElement('a');

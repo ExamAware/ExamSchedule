@@ -6,14 +6,16 @@
     <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
+    <div class="info-container">
+        <div class="info-content" id="infoMessage"></div>
+    </div>
     <div class="error-container">
         <div class="error-content" id="errorMessage"></div>
     </div>
 
     <div class="container">
         <div class="control-bar">
-            <button class="control-btn" onclick="toggleFullscreen()">全屏</button>
-            <button class="control-btn" onclick="exitFullscreen()">退出全屏</button>
+            <button class="control-btn" id="fullscreen-btn" onclick="toggleFullscreen()">全屏</button>
         </div>
 
         <div class="status-box">
@@ -24,19 +26,12 @@
 
         <div class="settings-panel">
             <h3>系统设置</h3>
-            <label>
-                <input type="checkbox" id="classBell"> 启用上课铃声
-            </label>
-            <br>
-            <label>
-                <input type="checkbox" id="breakBell"> 启用下课铃声
-            </label>
-            <br>
-            <label class="file-input-label">
-                <input type="file" id="importJson" accept=".json" multiple> 导入考试配置
-            </label>
-            <br>
-            <button class="action-btn" onclick="exportConfig()">导出配置</button>
+            <div class="button-group">
+                <label class="file-input-label">
+                    <input type="file" id="importJson" accept=".json" multiple> 导入考试配置
+                </label>
+                <button class="action-btn" onclick="exportConfig()">导出配置</button>
+            </div>
             <h3>提醒设置</h3>
             <table class="reminder-table" id="reminderTable">
                 <tr>

@@ -14,7 +14,7 @@ var audioController = (function() {
                 }
             });
         } catch(e) {
-            errorSystem.show('音频初始化失败: ' + e.message);
+            errorSystem.show('音频初始化失败: ' + e.message, 'error');
         }
     }
 
@@ -51,17 +51,17 @@ var audioController = (function() {
                 if (audioPool.length < maxPoolSize) {
                     audio = createAudio(type);
                 } else {
-                    return errorSystem.show('系统繁忙，请稍后再试');
+                    return errorSystem.show('系统繁忙，请稍后再试', 'error');
                 }
             }
             audio.src = soundFiles[type];
             try {
                 audio.play();
             } catch(e) {
-                errorSystem.show('播放失败: ' + e.message);
+                errorSystem.show('播放失败: ' + e.message, 'error');
             }
         } catch(e) {
-            errorSystem.show('音频系统错误: ' + e.message);
+            errorSystem.show('音频系统错误: ' + e.message, 'error');
         }
     }
 

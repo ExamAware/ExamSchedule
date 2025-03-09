@@ -188,6 +188,65 @@ body {
 .settings-panel input[type="file"] {
     margin-top: 10px;
 }
+.file-input-label {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #27ae60;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+.file-input-label:hover {
+    background: #219150;
+}
+.file-input-label input[type="file"] {
+    display: none;
+}
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* 信息提示 */
+.info-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #3498db;
+    color: white;
+    padding: 16px;
+    display: none;
+    z-index: 10001;
+    animation: slideUp 0.3s ease;
+}
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+.info-content {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.info-content:before {
+    content: 'i';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: white;
+    color: #3498db;
+    border-radius: 50%;
+    font-weight: bold;
+}
 
 /* 错误提示 */
 .error-container {
@@ -201,10 +260,6 @@ body {
     display: none;
     z-index: 10001;
     animation: slideUp 0.3s ease;
-}
-@keyframes slideUp {
-    from { transform: translateY(100%); }
-    to { transform: translateY(0); }
 }
 .error-content {
     max-width: 800px;
@@ -276,14 +331,14 @@ body {
 .file-input-label {
     display: inline-block;
     padding: 10px 20px;
-    background: #3498db;
+    background: #27ae60;
     color: white;
     border-radius: 8px;
     cursor: pointer;
     transition: background 0.3s ease;
 }
 .file-input-label:hover {
-    background: #2980b9;
+    background: #219150;
 }
 .file-input-label input[type="file"] {
     display: none;
@@ -291,7 +346,7 @@ body {
 
 /* 动作按钮 */
 .action-btn {
-    background: #3498db;
+    background: #27ae60;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -300,10 +355,10 @@ body {
     font-size: 15px;
     font-weight: 500;
     transition: all 0.2s ease;
-    box-shadow: 0 4px 12px rgba(52,152,219,0.25);
+    box-shadow: 0 4px 12px rgba(39, 174, 96, 0.25);
     margin-top: 10px;
 }
 .action-btn:hover {
     transform: translateY(-1px);
-    box-shadow: 0 6px 16px rgba(52,152,219,0.35);
+    box-shadow: 0 6px 16px rgba(39, 174, 96, 0.35);
 }

@@ -11,7 +11,7 @@ function safeUpdate() {
         timer = setTimeout(safeUpdate, nextTick);
         lastUpdate = now;
     } catch (e) {
-        errorSystem.show('更新循环错误: ' + e.message);
+        errorSystem.show('更新循环错误: ' + e.message, 'error');
     }
 }
 
@@ -32,7 +32,7 @@ function toggleFullscreen() {
             document.querySelector('.container').style.height = '';
         }
     } catch (e) {
-        errorSystem.show('全屏切换失败: ' + e.message);
+        errorSystem.show('全屏切换失败: ' + e.message, 'error');
     }
 }
 
@@ -45,7 +45,7 @@ function exitFullscreen() {
         document.querySelector('.container').style.width = '';
         document.querySelector('.container').style.height = '';
     } catch (e) {
-        errorSystem.show('退出全屏失败: ' + e.message);
+        errorSystem.show('退出全屏失败: ' + e.message, 'error');
     }
 }
 
@@ -98,15 +98,13 @@ function saveConfig() {
     }
     var config = {
         reminders: reminders,
-        classBell: document.getElementById('classBell').checked,
-        breakBell: document.getElementById('breakBell').checked,
         examInfos: courseSchedule,
         examName: document.title,
         message: document.getElementById('statusLabel').textContent,
         room: document.getElementById('timeDescription').textContent.replace('考场: ', '')
     };
     localStorage.setItem('config', JSON.stringify(config));
-    errorSystem.show('配置已保存');
+    errorSystem.show('配置已保存', 'info');
     loadRemindersToQueue(reminders);
 }
 
@@ -172,14 +170,6 @@ function init() {
         });
         // 初始化设置复选框
         var config = JSON.parse(localStorage.getItem('config') || '{}');
-        document.getElementById('classBell').checked = config.classBell || false;
-        document.getElementById('breakBell').checked = config.breakBell || false;
-        document.getElementById('classBell').onchange = function () {
-            saveConfig();
-        };
-        document.getElementById('breakBell').onchange = function () {
-            saveConfig();
-        };
         // 加载提醒设置
         var reminders = config.reminders || [];
         var table = document.getElementById('reminderTable');

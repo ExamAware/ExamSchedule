@@ -25,7 +25,7 @@ function updateDisplay() {
         }
         updateScheduleTable();
     } catch (e) {
-        errorSystem.show('界面更新失败: ' + e.message);
+        errorSystem.show('界面更新失败: ' + e.message, 'error');
     }
 }
 

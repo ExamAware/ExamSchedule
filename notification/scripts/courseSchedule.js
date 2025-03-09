@@ -1,23 +1,18 @@
-var courseSchedule = [
-    { name: "第一节课", start: "2025-03-09T08:00:00", end: "2025-03-09T08:50:00" },
-    { name: "第二节课", start: "2025-03-09T09:00:00", end: "2025-03-09T09:50:00" },
-    { name: "第三节课", start: "2025-03-09T10:10:00", end: "2025-03-09T11:00:00" },
-    { name: "第四节课", start: "2025-03-09T11:10:00", end: "2025-03-09T12:00:00" },
-    { name: "第一节课", start: "2025-03-09T13:30:00", end: "2025-03-09T14:20:00" },
-    { name: "第二节课", start: "2025-03-09T14:30:00", end: "2025-03-09T15:20:00" },
-    { name: "第三节课", start: "2025-03-09T15:40:00", end: "2025-03-09T16:30:00" },
-    { name: "第四节课", start: "2025-03-09T16:40:00", end: "2025-03-09T17:30:00" },
-    { name: "第一节课", start: "2025-03-09T18:00:00", end: "2025-03-09T18:50:00" },
-    { name: "第二节课", start: "2025-03-09T19:00:00", end: "2025-03-09T19:50:00" },
-    { name: "第三节课", start: "2025-03-09T20:10:00", end: "2025-03-09T21:00:00" },
-    { name: "第四节课", start: "2025-03-09T21:10:00", end: "2025-03-09T22:00:00" }
-];
+var courseSchedule = [];
+
+fetch('course_schedule.json')
+    .then(response => response.json())
+    .then(data => {
+        courseSchedule = data;
+        updateScheduleTable();
+    })
+    .catch(error => errorSystem.show('加载课程表失败: ' + error.message, 'error'));
 
 function parseTime(timeStr) {
     try {
         return new Date(timeStr);
     } catch (e) {
-        errorSystem.show('时间解析错误: ' + e.message);
+        errorSystem.show('时间解析错误: ' + e.message, 'info', 'error');
         return new Date();
     }
 }
@@ -41,8 +36,13 @@ function updateCourseStatus() {
             lastCourse = currentCourse;
         }
     } catch (e) {
-        errorSystem.show('课程状态更新失败: ' + e.message);
+        errorSystem.show('课程状态更新失败: ' + e.message, 'error');
     }
+}
+
+function handleStatusChange() {
+    // 处理状态变化的逻辑
+    console.log('课程状态已更改:', currentCourse);
 }
 
 function getNextCourse() {
@@ -54,7 +54,7 @@ function getNextCourse() {
         }
         return null;
     } catch (e) {
-        errorSystem.show('获取下一节课失败: ' + e.message);
+        errorSystem.show('获取下一节课失败: ' + e.message, 'error');
         return null;
     }
 }
@@ -87,6 +87,6 @@ function updateScheduleTable() {
             }
         }
     } catch (e) {
-        errorSystem.show('课程表更新失败: ' + e.message);
+        errorSystem.show('课程表更新失败: ' + e.message, 'error');
     }
 }

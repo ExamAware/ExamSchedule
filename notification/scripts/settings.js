@@ -12,8 +12,6 @@ function saveSettingsToCookies() {
             reminders.push({ condition: condition, time: time, audio: audio });
         }
     }
-    document.cookie = "classBell=" + document.getElementById('classBell').checked;
-    document.cookie = "breakBell=" + document.getElementById('breakBell').checked;
     document.cookie = "reminders=" + JSON.stringify(reminders);
 }
 
@@ -23,8 +21,6 @@ function loadSettingsFromCookies() {
         var parts = cookie.split('=');
         var name = parts[0].trim();
         var value = parts[1].trim();
-        if (name === 'classBell') document.getElementById('classBell').checked = (value === 'true');
-        if (name === 'breakBell') document.getElementById('breakBell').checked = (value === 'true');
         if (name === 'reminders') {
             var reminders = JSON.parse(value);
             var table = document.getElementById('reminderTable');
