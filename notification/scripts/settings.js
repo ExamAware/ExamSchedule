@@ -1,21 +1,20 @@
 function saveSettingsToCookies() {
-    var remindBefore1 = document.getElementById('remindBefore1');
-    var remindBefore2 = document.getElementById('remindBefore2');
-    var remindBefore3 = document.getElementById('remindBefore3');
-    var remindBefore4 = document.getElementById('remindBefore4');
-    var remindBefore5 = document.getElementById('remindBefore5');
-    var remindAfter1 = document.getElementById('remindAfter1');
-    var remindAfter2 = document.getElementById('remindAfter2');
-
+    var table = document.getElementById('reminderTable');
+    var reminders = [];
+    for (var i = 1; i < table.rows.length - 1; i++) {
+        var row = table.rows[i];
+        var condition = row.cells[0].querySelector('select').value;
+        var timeInput = row.cells[1].querySelector('input');
+        var audioSelect = row.cells[2].querySelector('select');
+        if (timeInput && audioSelect) {
+            var time = timeInput.value || 0; // 确保时间值不为空
+            var audio = audioSelect.value || 'classStart'; // 确保音频选择不为空
+            reminders.push({ condition: condition, time: time, audio: audio });
+        }
+    }
     document.cookie = "classBell=" + document.getElementById('classBell').checked;
     document.cookie = "breakBell=" + document.getElementById('breakBell').checked;
-    if (remindBefore1) document.cookie = "remindBefore1=" + remindBefore1.value;
-    if (remindBefore2) document.cookie = "remindBefore2=" + remindBefore2.value;
-    if (remindBefore3) document.cookie = "remindBefore3=" + remindBefore3.value;
-    if (remindBefore4) document.cookie = "remindBefore4=" + remindBefore4.value;
-    if (remindBefore5) document.cookie = "remindBefore5=" + remindBefore5.value;
-    if (remindAfter1) document.cookie = "remindAfter1=" + remindAfter1.value;
-    if (remindAfter2) document.cookie = "remindAfter2=" + remindAfter2.value;
+    document.cookie = "reminders=" + JSON.stringify(reminders);
 }
 
 function loadSettingsFromCookies() {
@@ -26,12 +25,35 @@ function loadSettingsFromCookies() {
         var value = parts[1].trim();
         if (name === 'classBell') document.getElementById('classBell').checked = (value === 'true');
         if (name === 'breakBell') document.getElementById('breakBell').checked = (value === 'true');
-        if (name === 'remindBefore1' && document.getElementById('remindBefore1')) document.getElementById('remindBefore1').value = value;
-        if (name === 'remindBefore2' && document.getElementById('remindBefore2')) document.getElementById('remindBefore2').value = value;
-        if (name === 'remindBefore3' && document.getElementById('remindBefore3')) document.getElementById('remindBefore3').value = value;
-        if (name === 'remindBefore4' && document.getElementById('remindBefore4')) document.getElementById('remindBefore4').value = value;
-        if (name === 'remindBefore5' && document.getElementById('remindBefore5')) document.getElementById('remindBefore5').value = value;
-        if (name === 'remindAfter1' && document.getElementById('remindAfter1')) document.getElementById('remindAfter1').value = value;
-        if (name === 'remindAfter2' && document.getElementById('remindAfter2')) document.getElementById('remindAfter2').value = value;
+        if (name === 'reminders') {
+            var reminders = JSON.parse(value);
+            var table = document.getElementById('reminderTable');
+            reminders.forEach(function(reminder) {
+                var row = table.insertRow(table.rows.length - 1);
+                row.innerHTML = `
+                    <td>
+                        <select>
+                            <option value="beforeStart" ${reminder.condition === 'beforeStart' ? 'selected' : ''}>当距离考试开始时间还有</option>
+                            <option value="beforeEnd" ${reminder.condition === 'beforeEnd' ? 'selected' : ''}>当距离考试结束时间还有</option>
+                            <option value="afterEnd" ${reminder.condition === 'afterEnd' ? 'selected' : ''}>当考试结束后</option>
+                            <option value="start" ${reminder.condition === 'start' ? 'selected' : ''}>当考试开始时</option>
+                            <option value="end" ${reminder.condition === 'end' ? 'selected' : ''}>当考试结束时</option>
+                        </select>
+                    </td>
+                    <td><input type="number" value="${reminder.time}" placeholder="${reminder.condition === 'start' || reminder.condition === 'end' ? '-' : '分钟'}" ${reminder.condition === 'start' || reminder.condition === 'end' ? 'disabled' : ''}></td>
+                    <td>
+                        <select>
+                            <option value="classStart" ${reminder.audio === 'classStart' ? 'selected' : ''}>上课铃声</option>
+                            <option value="classEnd" ${reminder.audio === 'classEnd' ? 'selected' : ''}>下课铃声</option>
+                        </select>
+                    </td>
+                    <td><button onclick="removeReminder(this)">删除</button></td>
+                `;
+                row.cells[0].querySelector('select').addEventListener('change', function() {
+                    row.cells[1].querySelector('input').disabled = this.value === 'start' || this.value === 'end';
+                    row.cells[1].querySelector('input').placeholder = this.value === 'start' || this.value === 'end' ? '-' : '分钟';
+                });
+            });
+        }
     });
 }

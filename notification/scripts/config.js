@@ -37,7 +37,35 @@ function applyConfig(config) {
         if (config.room) {
             document.getElementById('timeDescription').textContent = '考场: ' + config.room;
         }
+        if (config.reminders) {
+            localStorage.setItem('reminders', JSON.stringify(config.reminders));
+        }
+        if (config.classBell !== undefined) {
+            localStorage.setItem('classBell', config.classBell);
+        }
+        if (config.breakBell !== undefined) {
+            localStorage.setItem('breakBell', config.breakBell);
+        }
     } catch (err) {
         errorSystem.show('应用配置失败: ' + err.message);
     }
+}
+
+function exportConfig() {
+    var config = {
+        examInfos: courseSchedule,
+        examName: document.title,
+        message: document.getElementById('statusLabel').textContent,
+        room: document.getElementById('timeDescription').textContent.replace('考场: ', ''),
+        reminders: JSON.parse(localStorage.getItem('reminders') || '[]'),
+        classBell: localStorage.getItem('classBell') === 'true',
+        breakBell: localStorage.getItem('breakBell') === 'true'
+    };
+    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(config));
+    var downloadAnchorNode = document.createElement('a');
+    downloadAnchorNode.setAttribute("href", dataStr);
+    downloadAnchorNode.setAttribute("download", "exam_config.json");
+    document.body.appendChild(downloadAnchorNode);
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();
 }

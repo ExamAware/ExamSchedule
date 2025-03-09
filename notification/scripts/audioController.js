@@ -65,9 +65,14 @@ var audioController = (function() {
         }
     }
 
+    function getAudioSrc(type) {
+        return soundFiles[type];
+    }
+
     return {
         init: init,
-        play: play
+        play: play,
+        getAudioSrc: getAudioSrc
     };
 })();
 

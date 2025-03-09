@@ -58,9 +58,11 @@ function addReminder() {
                 <option value="beforeStart">当距离考试开始时间还有</option>
                 <option value="beforeEnd">当距离考试结束时间还有</option>
                 <option value="afterEnd">当考试结束后</option>
+                <option value="start">当考试开始时</option>
+                <option value="end">当考试结束时</option>
             </select>
         </td>
-        <td><input type="number" placeholder="分钟"></td>
+        <td><input type="number" placeholder="分钟" disabled></td>
         <td>
             <select>
                 <option value="classStart">上课铃声</option>
@@ -69,6 +71,10 @@ function addReminder() {
         </td>
         <td><button onclick="removeReminder(this)">删除</button></td>
     `;
+    row.cells[0].querySelector('select').addEventListener('change', function() {
+        row.cells[1].querySelector('input').disabled = this.value === 'start' || this.value === 'end';
+        row.cells[1].querySelector('input').placeholder = this.value === 'start' || this.value === 'end' ? '-' : '分钟';
+    });
 }
 
 function removeReminder(button) {
@@ -76,7 +82,7 @@ function removeReminder(button) {
     row.parentNode.removeChild(row);
 }
 
-function saveReminders() {
+function saveConfig() {
     var table = document.getElementById('reminderTable');
     var reminders = [];
     for (var i = 1; i < table.rows.length - 1; i++) {
@@ -90,15 +96,68 @@ function saveReminders() {
             reminders.push({ condition: condition, time: time, audio: audio });
         }
     }
-    // 添加开始考试和结束考试的提醒
-    var audioStart = document.getElementById('audioStart');
-    var audioEnd = document.getElementById('audioEnd');
-    if (audioStart && audioEnd) {
-        reminders.push({ condition: 'start', time: 0, audio: audioStart.value || 'classStart' });
-        reminders.push({ condition: 'end', time: 0, audio: audioEnd.value || 'classEnd' });
-    }
-    localStorage.setItem('reminders', JSON.stringify(reminders));
-    errorSystem.show('提醒设置已保存');
+    var config = {
+        reminders: reminders,
+        classBell: document.getElementById('classBell').checked,
+        breakBell: document.getElementById('breakBell').checked,
+        examInfos: courseSchedule,
+        examName: document.title,
+        message: document.getElementById('statusLabel').textContent,
+        room: document.getElementById('timeDescription').textContent.replace('考场: ', '')
+    };
+    localStorage.setItem('config', JSON.stringify(config));
+    errorSystem.show('配置已保存');
+    loadRemindersToQueue(reminders);
+}
+
+function loadRemindersToQueue(reminders) {
+    var now = Date.now();
+    reminders.forEach(function(reminder) {
+        var reminderTime;
+        if (currentCourse) {
+            switch (reminder.condition) {
+                case 'beforeStart':
+                    reminderTime = new Date(currentCourse.start).getTime() - reminder.time * 60000;
+                    break;
+                case 'beforeEnd':
+                    reminderTime = new Date(currentCourse.end).getTime() - reminder.time * 60000;
+                    break;
+                case 'afterEnd':
+                    reminderTime = new Date(currentCourse.end).getTime() + reminder.time * 60000;
+                    break;
+                case 'start':
+                    reminderTime = new Date(currentCourse.start).getTime();
+                    break;
+                case 'end':
+                    reminderTime = new Date(currentCourse.end).getTime();
+                    break;
+                default:
+                    console.error('未知的提醒条件:', reminder.condition);
+                    return;
+            }
+        } else {
+            var nextCourse = getNextCourse();
+            if (nextCourse) {
+                switch (reminder.condition) {
+                    case 'beforeStart':
+                        reminderTime = new Date(nextCourse.start).getTime() - reminder.time * 60000;
+                        break;
+                    case 'start':
+                        reminderTime = new Date(nextCourse.start).getTime();
+                        break;
+                    default:
+                        console.error('未知的提醒条件:', reminder.condition);
+                        return;
+                }
+            } else {
+                console.error('当前没有课程信息');
+                return;
+            }
+        }
+        if (reminderTime > now) {
+            reminderQueue.addReminder({ time: reminderTime, condition: reminder.condition, audio: reminder.audio });
+        }
+    });
 }
 
 // 修改：系统初始化函数
@@ -112,57 +171,52 @@ function init() {
                             '<td></td>';
         });
         // 初始化设置复选框
-        document.getElementById('classBell').checked = localStorage.classBell === 'true';
-        document.getElementById('breakBell').checked = localStorage.breakBell === 'true';
+        var config = JSON.parse(localStorage.getItem('config') || '{}');
+        document.getElementById('classBell').checked = config.classBell || false;
+        document.getElementById('breakBell').checked = config.breakBell || false;
         document.getElementById('classBell').onchange = function () {
-            localStorage.classBell = this.checked;
-            saveSettingsToCookies();
+            saveConfig();
         };
         document.getElementById('breakBell').onchange = function () {
-            localStorage.breakBell = this.checked;
-            saveSettingsToCookies();
+            saveConfig();
         };
         // 加载提醒设置
-        var reminders = JSON.parse(localStorage.getItem('reminders') || '[]');
+        var reminders = config.reminders || [];
         var table = document.getElementById('reminderTable');
-        if (reminders.length === 0) {
-            // 自动新建默认提醒设置
-            addReminder();
-        } else {
-            reminders.forEach(function(reminder) {
-                if (reminder.condition === 'start' || reminder.condition === 'end') {
-                    var audioElement = document.getElementById('audio' + reminder.condition.charAt(0).toUpperCase() + reminder.condition.slice(1));
-                    if (audioElement) {
-                        audioElement.value = reminder.audio;
-                    }
-                } else {
-                    var row = table.insertRow(table.rows.length - 1);
-                    row.innerHTML = `
-                        <td>
-                            <select>
-                                <option value="beforeStart" ${reminder.condition === 'beforeStart' ? 'selected' : ''}>当距离考试开始时间还有</option>
-                                <option value="beforeEnd" ${reminder.condition === 'beforeEnd' ? 'selected' : ''}>当距离考试结束时间还有</option>
-                                <option value="afterEnd" ${reminder.condition === 'afterEnd' ? 'selected' : ''}>当考试结束后</option>
-                            </select>
-                        </td>
-                        <td><input type="number" value="${reminder.time}" placeholder="分钟"></td>
-                        <td>
-                            <select>
-                                <option value="classStart" ${reminder.audio === 'classStart' ? 'selected' : ''}>上课铃声</option>
-                                <option value="classEnd" ${reminder.audio === 'classEnd' ? 'selected' : ''}>下课铃声</option>
-                            </select>
-                        </td>
-                        <td><button onclick="removeReminder(this)">删除</button></td>
-                    `;
-                }
+        reminders.forEach(function(reminder) {
+            var row = table.insertRow(table.rows.length - 1);
+            row.innerHTML = `
+                <td>
+                    <select>
+                        <option value="beforeStart" ${reminder.condition === 'beforeStart' ? 'selected' : ''}>当距离考试开始时间还有</option>
+                        <option value="beforeEnd" ${reminder.condition === 'beforeEnd' ? 'selected' : ''}>当距离考试结束时间还有</option>
+                        <option value="afterEnd" ${reminder.condition === 'afterEnd' ? 'selected' : ''}>当考试结束后</option>
+                        <option value="start" ${reminder.condition === 'start' ? 'selected' : ''}>当考试开始时</option>
+                        <option value="end" ${reminder.condition === 'end' ? 'selected' : ''}>当考试结束时</option>
+                    </select>
+                </td>
+                <td><input type="number" value="${reminder.time}" placeholder="${reminder.condition === 'start' || reminder.condition === 'end' ? '-' : '分钟'}" ${reminder.condition === 'start' || reminder.condition === 'end' ? 'disabled' : ''}></td>
+                <td>
+                    <select>
+                        <option value="classStart" ${reminder.audio === 'classStart' ? 'selected' : ''}>上课铃声</option>
+                        <option value="classEnd" ${reminder.audio === 'classEnd' ? 'selected' : ''}>下课铃声</option>
+                    </select>
+                </td>
+                <td><button onclick="removeReminder(this)">删除</button></td>
+            `;
+            row.cells[0].querySelector('select').addEventListener('change', function() {
+                row.cells[1].querySelector('input').disabled = this.value === 'start' || this.value === 'end';
+                row.cells[1].querySelector('input').placeholder = this.value === 'start' || this.value === 'end' ? '-' : '分钟';
             });
-        }
+        });
         // 启动安全更新循环
         safeUpdate();
         // 移除或修改音频权限激活代码（用原音频系统无需特殊激活）
         document.body.onclick = null;
         // 加载设置从Cookies
         loadSettingsFromCookies();
+        // 加载提醒到队列
+        loadRemindersToQueue(reminders);
     } catch (e) {
         errorSystem.show('系统初始化失败: ' + e.message);
     }
