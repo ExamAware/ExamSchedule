@@ -1,0 +1,273 @@
+/* 基础样式 */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: #f5f7fa;
+    color: #2d3436;
+}
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* 状态显示框 */
+.status-box {
+    background: linear-gradient(145deg, #ffffff, #f8f9fa);
+    border: 1px solid #e0e6ed;
+    padding: 30px;
+    margin: 20px 0;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    transition: all 0.3s ease;
+}
+.time-display {
+    font-size: 48px;
+    color: #2c3e50;
+    font-weight: 700;
+    margin: 15px 0;
+    text-align: center;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.status-label {
+    font-size: 28px;
+    text-align: center;
+    margin: 15px 0;
+    color: #57606f;
+}
+
+/* 课程表格 */
+.schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+.schedule-table th {
+    background: #f8f9fa;
+    padding: 16px;
+    color: #57606f;
+    font-weight: 600;
+    border-bottom: 2px solid #e0e6ed;
+}
+.schedule-table td {
+    padding: 14px;
+    border-bottom: 1px solid #f1f3f6;
+}
+.current-class {
+    background: #e8f5e9 !important;
+    position: relative;
+}
+.current-class:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background: #2ecc71;
+}
+.future-class {
+    background: #f8f9fa !important;
+}
+.past-class {
+    background: #fafafa !important;
+    color: #a4b0be;
+}
+
+/* 全屏模式 */
+.fullscreen-mode {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    z-index: 9999;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+.fullscreen-mode .status-box {
+    width: 100%;
+    height: 100%;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: none;
+}
+.fullscreen-mode .time-display {
+    font-size: 25vw;
+    line-height: 0.9;
+    color: #2c3e50;
+}
+.fullscreen-mode .status-label {
+    font-size: 6vw;
+    margin-top: 4vw;
+    color: #57606f;
+}
+.fullscreen-mode .control-bar,
+.fullscreen-mode .settings-panel,
+.fullscreen-mode .schedule-table {
+    display: none !important;
+}
+
+/* 控制按钮 */
+.control-bar {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+    display: flex;
+    gap: 10px;
+}
+.control-btn {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(52,152,219,0.25);
+}
+.control-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(52,152,219,0.35);
+}
+
+/* 设置面板 */
+.settings-panel {
+    background: rgba(255,255,255,0.95);
+    padding: 25px;
+    margin: 25px 0;
+    border-radius: 12px;
+    border: 1px solid #e0e6ed;
+    backdrop-filter: blur(8px);
+}
+.settings-panel h3 {
+    margin: 0 0 20px;
+    color: #2c3e50;
+    font-size: 20px;
+}
+.settings-panel label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 12px 0;
+    font-size: 16px;
+    color: #57606f;
+    flex-wrap: wrap; /* 解决文本框显示在页面外的问题 */
+}
+.settings-panel input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #3498db;
+}
+.settings-panel input[type="number"] {
+    width: 60px;
+    padding: 5px;
+    border: 1px solid #e0e6ed;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #2d3436;
+    margin-right: 10px;
+}
+.settings-panel input[type="file"] {
+    margin-top: 10px;
+}
+
+/* 错误提示 */
+.error-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #ff6b6b;
+    color: white;
+    padding: 16px;
+    display: none;
+    z-index: 10001;
+    animation: slideUp 0.3s ease;
+}
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+.error-content {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.error-content:before {
+    content: '!';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: white;
+    color: #ff6b6b;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+/* 提醒表格 */
+.reminder-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+.reminder-table th, .reminder-table td {
+    padding: 12px;
+    border-bottom: 1px solid #f1f3f6;
+    text-align: left;
+}
+.reminder-table th {
+    background: #f8f9fa;
+    color: #57606f;
+    font-weight: 600;
+}
+.reminder-table td input, .reminder-table td select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #e0e6ed;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #2d3436;
+}
+.reminder-table td button {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+.reminder-table td button:hover {
+    background: #c0392b;
+}
+.reminder-table td:last-child {
+    text-align: center;
+}

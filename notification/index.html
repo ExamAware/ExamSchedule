@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>课程状态系统完整版</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <div class="error-container">
+        <div class="error-content" id="errorMessage"></div>
+    </div>
+
+    <div class="container">
+        <div class="control-bar">
+            <button class="control-btn" onclick="toggleFullscreen()">全屏</button>
+            <button class="control-btn" onclick="exitFullscreen()">退出全屏</button>
+        </div>
+
+        <div class="status-box">
+            <div class="status-label" id="statusLabel">正在初始化...</div>
+            <div class="time-display" id="timeDisplay">--:--</div>
+            <div id="timeDescription" style="text-align:center;color:#a4b0be;"></div>
+        </div>
+
+        <div class="settings-panel">
+            <h3>系统设置</h3>
+            <label>
+                <input type="checkbox" id="classBell"> 启用上课铃声
+            </label>
+            <br>
+            <label>
+                <input type="checkbox" id="breakBell"> 启用下课铃声
+            </label>
+            <br>
+            <label>
+                <input type="file" id="importJson" accept=".json" multiple> 导入考试配置
+            </label>
+            <br>
+            <h3>提醒设置</h3>
+            <table class="reminder-table" id="reminderTable">
+                <tr>
+                    <th>提醒条件</th>
+                    <th>时间（分钟）</th>
+                    <th>音频选择</th>
+                    <th>操作</th>
+                </tr>
+                <tr>
+                    <td>当距离考试开始时间还有</td>
+                    <td><input type="number" id="remindBefore1" placeholder="分钟"></td>
+                    <td>
+                        <select id="audioBefore1">
+                            <option value="classStart">上课铃声</option>
+                            <option value="classEnd">下课铃声</option>
+                        </select>
+                    </td>
+                    <td><button onclick="removeReminder(this)">删除</button></td>
+                </tr>
+                <tr>
+                    <td>当距离考试结束时间还有</td>
+                    <td><input type="number" id="remindBeforeEnd1" placeholder="分钟"></td>
+                    <td>
+                        <select id="audioBeforeEnd1">
+                            <option value="classStart">上课铃声</option>
+                            <option value="classEnd">下课铃声</option>
+                        </select>
+                    </td>
+                    <td><button onclick="removeReminder(this)">删除</button></td>
+                </tr>
+                <tr>
+                    <td>当考试结束后</td>
+                    <td><input type="number" id="remindAfter1" placeholder="分钟"></td>
+                    <td>
+                        <select id="audioAfter1">
+                            <option value="classStart">上课铃声</option>
+                            <option value="classEnd">下课铃声</option>
+                        </select>
+                    </td>
+                    <td><button onclick="removeReminder(this)">删除</button></td>
+                </tr>
+                <tr>
+                    <td>当考试开始时</td>
+                    <td><input type="number" id="remindStart" placeholder="分钟" disabled></td>
+                    <td>
+                        <select id="audioStart">
+                            <option value="classStart">上课铃声</option>
+                            <option value="classEnd">下课铃声</option>
+                        </select>
+                    </td>
+                    <td><button onclick="removeReminder(this)" disabled>删除</button></td>
+                </tr>
+                <tr>
+                    <td>当考试结束时</td>
+                    <td><input type="number" id="remindEnd" placeholder="分钟" disabled></td>
+                    <td>
+                        <select id="audioEnd">
+                            <option value="classStart">上课铃声</option>
+                            <option value="classEnd">下课铃声</option>
+                        </select>
+                    </td>
+                    <td><button onclick="removeReminder(this)" disabled>删除</button></td>
+                </tr>
+                <tr>
+                    <td colspan="4"><button onclick="addReminder()">添加提醒</button></td>
+                </tr>
+            </table>
+            <button onclick="saveReminders()">保存提醒设置</button>
+        </div>
+
+        <table class="schedule-table" id="scheduleTable">
+            <tr>
+                <th>课程名称</th>
+                <th>时间段</th>
+                <th>状态</th>
+            </tr>
+        </table>
+    </div>
+
+    <script src="scripts/errorSystem.js"></script>
+    <script src="scripts/audioController.js"></script>
+    <script src="scripts/courseSchedule.js"></script>
+    <script src="scripts/display.js"></script>
+    <script src="scripts/config.js"></script>
+    <script src="scripts/settings.js"></script>
+    <script src="scripts/script.js"></script>
+</body>
+</html>
