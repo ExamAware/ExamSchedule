@@ -32,11 +32,11 @@
                 <input type="checkbox" id="breakBell"> 启用下课铃声
             </label>
             <br>
-            <label>
+            <label class="file-input-label">
                 <input type="file" id="importJson" accept=".json" multiple> 导入考试配置
             </label>
             <br>
-            <button onclick="exportConfig()">导出配置</button>
+            <button class="action-btn" onclick="exportConfig()">导出配置</button>
             <h3>提醒设置</h3>
             <table class="reminder-table" id="reminderTable">
                 <tr>
@@ -46,10 +46,10 @@
                     <th>操作</th>
                 </tr>
                 <tr>
-                    <td colspan="4"><button onclick="addReminder()">添加提醒</button></td>
+                    <td colspan="4"><button class="action-btn" onclick="addReminder()">添加提醒</button></td>
                 </tr>
             </table>
-            <button onclick="saveConfig()">保存提醒设置</button>
+            <button class="action-btn" onclick="saveConfig()">保存提醒设置</button>
         </div>
 
         <table class="schedule-table" id="scheduleTable">

@@ -271,3 +271,39 @@ body {
 .reminder-table td:last-child {
     text-align: center;
 }
+
+/* 文件输入标签 */
+.file-input-label {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #3498db;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+.file-input-label:hover {
+    background: #2980b9;
+}
+.file-input-label input[type="file"] {
+    display: none;
+}
+
+/* 动作按钮 */
+.action-btn {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(52,152,219,0.25);
+    margin-top: 10px;
+}
+.action-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(52,152,219,0.35);
+}
