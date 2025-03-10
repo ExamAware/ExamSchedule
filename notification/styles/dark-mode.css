@@ -1,0 +1,106 @@
+body.dark-mode {
+    background: #2d3436;
+    color: #e0e0e0;
+}
+body.dark-mode .status-box {
+    background: linear-gradient(145deg, #2d3436, #3a3a3a);
+    border: 1px solid #444;
+}
+body.dark-mode .time-display {
+    color: #ecf0f1;
+}
+body.dark-mode .status-label {
+    color: #bdc3c7;
+}
+body.dark-mode .schedule-table {
+    background: #3a3a3a;
+}
+body.dark-mode .schedule-table th {
+    background: #444;
+    color: #ecf0f1;
+}
+body.dark-mode .schedule-table td {
+    border-bottom: 1px solid #555;
+}
+body.dark-mode .current-class {
+    background: #34495e !important;
+}
+body.dark-mode .future-class {
+    background: #3a3a3a !important;
+}
+body.dark-mode .past-class {
+    background: #2d3436 !important;
+    color: #7f8c8d;
+}
+body.dark-mode .control-btn {
+    background: linear-gradient(135deg, #2980b9, #3498db);
+}
+body.dark-mode .control-btn:hover {
+    box-shadow: 0 6px 16px rgba(52, 152, 219, 0.35);
+}
+body.dark-mode .settings-panel {
+    background: rgba(45, 52, 54, 0.95);
+    border: 1px solid #444;
+}
+body.dark-mode .settings-panel h3 {
+    color: #ecf0f1;
+}
+body.dark-mode .settings-panel label {
+    color: #bdc3c7;
+}
+body.dark-mode .settings-panel input[type="number"] {
+    background: #3a3a3a;
+    color: #ecf0f1;
+    border: 1px solid #555;
+}
+body.dark-mode .settings-panel input[type="file"] {
+    background: #3a3a3a;
+    color: #ecf0f1;
+    border: 1px solid #555;
+}
+body.dark-mode .file-input-label {
+    background: #27ae60;
+}
+body.dark-mode .file-input-label:hover {
+    background: #219150;
+}
+body.dark-mode .info-container {
+    background: #2980b9;
+}
+body.dark-mode .info-content:before {
+    color: #2980b9;
+}
+body.dark-mode .error-container {
+    background: #c0392b;
+}
+body.dark-mode .error-content:before {
+    color: #c0392b;
+}
+body.dark-mode .reminder-table {
+    background: #3a3a3a;
+}
+body.dark-mode .reminder-table th {
+    background: #444;
+    color: #ecf0f1;
+}
+body.dark-mode .reminder-table td {
+    border-bottom: 1px solid #555;
+}
+body.dark-mode .reminder-table td input,
+body.dark-mode .reminder-table td select {
+    background: #3a3a3a;
+    color: #ecf0f1;
+    border: 1px solid #555;
+}
+body.dark-mode .reminder-table td button {
+    background: #e74c3c;
+}
+body.dark-mode .reminder-table td button:hover {
+    background: #c0392b;
+}
+body.dark-mode .action-btn {
+    background: #27ae60;
+}
+body.dark-mode .action-btn:hover {
+    box-shadow: 0 6px 16px rgba(39, 174, 96, 0.35);
+}

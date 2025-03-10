@@ -3,9 +3,20 @@
 <head>
     <meta charset="utf-8">
     <title>考试看板—广播适配</title>
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/status-box.css">
+    <link rel="stylesheet" href="styles/schedule-table.css">
+    <link rel="stylesheet" href="styles/fullscreen-mode.css">
+    <link rel="stylesheet" href="styles/control-btn.css">
+    <link rel="stylesheet" href="styles/settings-panel.css">
+    <link rel="stylesheet" href="styles/info-error.css">
+    <link rel="stylesheet" href="styles/reminder-table.css">
+    <link rel="stylesheet" href="styles/file-input-label.css">
+    <link rel="stylesheet" href="styles/action-btn.css">
+    <link rel="stylesheet" href="styles/dark-mode.css">
+    <link rel="stylesheet" href="styles/switch.css">
 </head>
-<body>
+<body class="light-mode">
     <div class="info-container">
         <div class="info-content" id="infoMessage"></div>
     </div>
@@ -17,11 +28,15 @@
         <div class="control-bar">
             <button class="control-btn" id="fullscreen-btn" onclick="toggleFullscreen()">全屏</button>
             <button class="control-btn" id="exitFullscreenBtn" onclick="toggleFullscreen()" style="display: none;">退出全屏</button>
+            <label class="switch">
+                <input type="checkbox" id="theme-toggle">
+                <span class="slider round"></span>
+            </label>
         </div>
 
         <div class="status-box">
             <div class="status-label" id="statusLabel">正在初始化...</div>
-            <div class="time-display" id="timeDisplay">--:--</div>
+            <div class="time-display" id="timeDisplay" onclick="adjustCountdownFontSize()">--:--</div>
             <div id="timeDescription" style="text-align:center;color:#a4b0be;"></div>
         </div>
 
@@ -65,5 +80,6 @@
     <script src="scripts/settings.js"></script>
     <script src="scripts/reminderQueue.js"></script>
     <script src="scripts/script.js"></script>
+    <script src="scripts/utils.js"></script>
 </body>
 </html>

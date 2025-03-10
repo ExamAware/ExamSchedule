@@ -24,6 +24,7 @@ function toggleFullscreen() {
                 document.body.classList.add('fullscreen-mode');
                 adjustFontSize();
                 document.getElementById('exitFullscreenBtn').style.display = 'block';
+                hideNonFullscreenElements();
             });
         } else {
             document.exitFullscreen().then(() => {
@@ -31,6 +32,7 @@ function toggleFullscreen() {
                 document.body.classList.remove('fullscreen-mode');
                 adjustFontSize();
                 document.getElementById('exitFullscreenBtn').style.display = 'none';
+                showNonFullscreenElements();
             });
         }
     } catch (e) {
@@ -55,10 +57,29 @@ function adjustFontSize() {
     }
 }
 
+function adjustCountdownFontSize() {
+    var countdownElement = document.getElementById('timeDisplay');
+    var currentSize = parseFloat(window.getComputedStyle(countdownElement).fontSize);
+    countdownElement.style.fontSize = (currentSize + 5) + 'px';
+}
+
+function hideNonFullscreenElements() {
+    var elements = document.querySelectorAll('.container > :not(.status-box), .control-bar > :not(#fullscreen-btn)');
+    elements.forEach(element => {
+        element.style.display = 'none';
+    });
+}
+
+function showNonFullscreenElements() {
+    var elements = document.querySelectorAll('.container > :not(.status-box), .control-bar > :not(#fullscreen-btn)');
+    elements.forEach(element => {
+        element.style.display = '';
+    });
+}
+
 function addReminder() {
     var table = document.getElementById('reminderTable');
     var row = table.insertRow(table.rows.length - 1);
-    row.draggable = true;
     row.innerHTML = `
         <td>
             <select>
@@ -74,14 +95,12 @@ function addReminder() {
             <select name="audioSelect"></select>
         </td>
         <td><button onclick="removeReminder(this)">删除</button></td>
-        <td class="drag-handle">☰</td>
     `;
     row.cells[0].querySelector('select').addEventListener('change', function() {
         row.cells[1].querySelector('input').disabled = this.value === 'start' || this.value === 'end';
         row.cells[1].querySelector('input').placeholder = this.value === 'start' || this.value === 'end' ? '-' : '分钟';
     });
     audioController.populateAudioSelect();
-    addDragAndDropHandlers(row);
 }
 
 function removeReminder(button) {
@@ -102,6 +121,10 @@ function saveConfig() {
             var audio = audioSelect.value || 'classStart'; // 确保音频选择不为空
             reminders.push({ condition: condition, time: time, audio: audio });
         }
+    }
+    if (reminders.length === 0) {
+        errorSystem.show('请添加至少一个提醒策略', 'error');
+        return;
     }
     var config = {
         reminders: reminders,
@@ -182,7 +205,6 @@ function init() {
         var table = document.getElementById('reminderTable');
         reminders.forEach(function(reminder) {
             var row = table.insertRow(table.rows.length - 1);
-            row.draggable = true;
             row.innerHTML = `
                 <td>
                     <select>
@@ -201,13 +223,11 @@ function init() {
                     </select>
                 </td>
                 <td><button onclick="removeReminder(this)">删除</button></td>
-                <td class="drag-handle">☰</td>
             `;
             row.cells[0].querySelector('select').addEventListener('change', function() {
                 row.cells[1].querySelector('input').disabled = this.value === 'start' || this.value === 'end';
                 row.cells[1].querySelector('input').placeholder = this.value === 'start' || this.value === 'end' ? '-' : '分钟';
             });
-            addDragAndDropHandlers(row);
         });
         // 启动安全更新循环
         safeUpdate();
@@ -225,41 +245,3 @@ window.onbeforeunload = function () {
     if (timer) clearTimeout(timer);
 };
 init();
-
-function addDragAndDropHandlers(row) {
-    row.addEventListener('dragstart', function(e) {
-        e.dataTransfer.setData('text/plain', e.target.rowIndex);
-        e.target.classList.add('dragging');
-    });
-
-    row.addEventListener('dragover', function(e) {
-        e.preventDefault();
-        var draggingRow = document.querySelector('.dragging');
-        if (draggingRow && draggingRow !== e.target) {
-            var table = document.getElementById('reminderTable');
-            var rows = Array.from(table.rows).slice(1, -1);
-            var targetRow = rows.find(row => row === e.target || row.contains(e.target));
-            if (targetRow && targetRow.parentNode === table) {
-                var targetIndex = targetRow.rowIndex;
-                var draggingIndex = draggingRow.rowIndex;
-                if (draggingIndex < targetIndex) {
-                    table.insertBefore(draggingRow, targetRow.nextSibling);
-                } else {
-                    table.insertBefore(draggingRow, targetRow);
-                }
-            }
-        }
-    });
-
-    row.addEventListener('drop', function(e) {
-        e.preventDefault();
-        var draggingRow = document.querySelector('.dragging');
-        if (draggingRow) {
-            draggingRow.classList.remove('dragging');
-        }
-    });
-
-    row.addEventListener('dragend', function(e) {
-        e.target.classList.remove('dragging');
-    });
-}

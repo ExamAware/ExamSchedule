@@ -53,3 +53,48 @@ function loadSettingsFromCookies() {
         }
     });
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    const themeToggle = document.getElementById("theme-toggle");
+
+    let theme = getCookie("theme") || "light";
+
+    if (theme === "light") {
+        document.body.classList.remove("dark-mode");
+        themeToggle.checked = false;
+    } else {
+        document.body.classList.add("dark-mode");
+        themeToggle.checked = true;
+    }
+
+    themeToggle.addEventListener("change", () => {
+        const theme = themeToggle.checked ? "dark" : "light";
+        if (theme === "light") {
+            document.body.classList.remove("dark-mode");
+        } else {
+            document.body.classList.add("dark-mode");
+        }
+        setCookie("theme", theme, 365);
+    });
+});
+
+function getCookie(name) {
+    const nameEQ = name + "=";
+    const ca = document.cookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+}
+
+function setCookie(name, value, days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}

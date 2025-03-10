@@ -1,0 +1,40 @@
+.schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+.schedule-table th {
+    background: #f8f9fa;
+    padding: 16px;
+    color: #57606f;
+    font-weight: 600;
+    border-bottom: 2px solid #e0e6ed;
+}
+.schedule-table td {
+    padding: 14px;
+    border-bottom: 1px solid #f1f3f6;
+}
+.current-class {
+    background: #e8f5e9 !important;
+    position: relative;
+}
+.current-class:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background: #2ecc71;
+}
+.future-class {
+    background: #f8f9fa !important;
+}
+.past-class {
+    background: #fafafa !important;
+    color: #a4b0be;
+}

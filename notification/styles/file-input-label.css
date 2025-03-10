@@ -1,0 +1,15 @@
+.file-input-label {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #27ae60;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+.file-input-label:hover {
+    background: #219150;
+}
+.file-input-label input[type="file"] {
+    display: none;
+}

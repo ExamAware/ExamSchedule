@@ -1,0 +1,55 @@
+.reminder-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+.reminder-table th, .reminder-table td {
+    padding: 12px;
+    border-bottom: 1px solid #f1f3f6;
+    text-align: left;
+}
+.reminder-table th {
+    background: #f8f9fa;
+    color: #57606f;
+    font-weight: 600;
+}
+.reminder-table td {
+    padding: 12px;
+    border-bottom: 1px solid #f1f3f6;
+    text-align: left;
+    cursor: move; /* 添加拖拽光标 */
+}
+.reminder-table td.drag-handle {
+    cursor: grab; /* 添加拖拽光标 */
+}
+.reminder-table tr.dragging {
+    opacity: 0.5; /* 拖拽时透明度 */
+}
+.reminder-table td input, .reminder-table td select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #e0e6ed;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #2d3436;
+}
+.reminder-table td button {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+.reminder-table td button:hover {
+    background: #c0392b;
+}
+.reminder-table td:last-child {
+    text-align: center;
+}

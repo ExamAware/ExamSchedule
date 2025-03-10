@@ -1,0 +1,24 @@
+.status-box {
+    background: linear-gradient(145deg, #ffffff, #f8f9fa);
+    border: 1px solid #e0e6ed;
+    padding: 30px;
+    margin: 20px 0;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    transition: all 0.3s ease;
+}
+.time-display {
+    font-size: 48px;
+    color: #2c3e50;
+    font-weight: 700;
+    margin: 15px 0;
+    text-align: center;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.status-label {
+    font-size: 28px;
+    text-align: center;
+    margin: 15px 0;
+    color: #57606f;
+}
