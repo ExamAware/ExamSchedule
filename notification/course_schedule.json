@@ -62,18 +62,23 @@
         }
     ],
     "examName": "考试看板—广播适配",
-    "message": "示例配置文件",
-    "room": "没用",
+    "message": "1111111",
+    "room": "剩余时间",
     "reminders": [
         {
-            "condition": "beforeEnd",
-            "time": "11",
-            "audio": "上课铃"
+            "condition": "start",
+            "time": 0,
+            "audio": "考试开始"
+        },
+        {
+            "condition": "end",
+            "time": 0,
+            "audio": "考试结束"
         },
         {
             "condition": "beforeEnd",
-            "time": "5",
-            "audio": "上课铃"
+            "time": "15",
+            "audio": "距离结束还有15分钟"
         }
     ]
 }

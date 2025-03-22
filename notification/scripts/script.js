@@ -70,33 +70,32 @@ function removeReminder(button) {
 }
 
 function saveConfig() {
-    var table = document.getElementById('reminderTable');
-    var reminders = [];
-    for (var i = 1; i < table.rows.length - 1; i++) {
-        var row = table.rows[i];
-        var condition = row.cells[0].querySelector('select').value;
-        var timeInput = row.cells[1].querySelector('input');
-        var audioSelect = row.cells[2].querySelector('select');
-        if (timeInput && audioSelect) {
-            var time = timeInput.value || 0; // 确保时间值不为空
-            var audio = audioSelect.value || 'classStart'; // 确保音频选择不为空
-            reminders.push({ condition: condition, time: time, audio: audio });
+    try {
+        var table = document.getElementById('reminderTable');
+        var reminders = [];
+        for (var i = 1; i < table.rows.length - 1; i++) {
+            var row = table.rows[i];
+            var condition = row.cells[0].querySelector('select').value;
+            var timeInput = row.cells[1].querySelector('input');
+            var audioSelect = row.cells[2].querySelector('select');
+            if (timeInput && audioSelect) {
+                reminders.push({
+                    condition: condition,
+                    time: timeInput.value || 0,
+                    audio: audioSelect.value
+                });
+            }
         }
+        if (reminders.length === 0) {
+            errorSystem.show('请添加至少一个提醒策略', 'error');
+            return;
+        }
+        // 保存到 Cookie 并更新提醒队列
+        saveSettingsToCookies();
+        loadRemindersToQueue(reminders);
+    } catch (e) {
+        errorSystem.show('保存设置失败: ' + e.message, 'error');
     }
-    if (reminders.length === 0) {
-        errorSystem.show('请添加至少一个提醒策略', 'error');
-        return;
-    }
-    var config = {
-        reminders: reminders,
-        examInfos: courseSchedule,
-        examName: document.title,
-        message: document.getElementById('statusLabel').textContent,
-        room: document.getElementById('timeDescription').textContent.replace('考场: ', '')
-    };
-    localStorage.setItem('config', JSON.stringify(config));
-    errorSystem.show('配置已保存', 'info');
-    loadRemindersToQueue(reminders);
 }
 
 function loadRemindersToQueue(reminders) {

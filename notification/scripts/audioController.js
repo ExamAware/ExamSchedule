@@ -75,14 +75,38 @@ var audioController = (function() {
     }
 
     function populateAudioSelect() {
+        if (!Object.keys(soundFiles).length) {
+            // 如果音频文件还没加载完成，等待加载
+            fetch('audio_files.json')
+                .then(response => response.json())
+                .then(data => {
+                    soundFiles = data;
+                    _populateSelectOptions();
+                })
+                .catch(e => errorSystem.show('音频选项加载失败: ' + e.message, 'error'));
+        } else {
+            _populateSelectOptions();
+        }
+    }
+
+    function _populateSelectOptions() {
         var selects = document.querySelectorAll('select[name="audioSelect"]');
         selects.forEach(select => {
+            // 保存当前选中的值
+            var currentValue = select.value;
+            // 清空现有选项
+            select.innerHTML = '';
+            // 添加新选项
             Object.keys(soundFiles).forEach(function(type) {
                 var option = document.createElement('option');
                 option.value = type;
                 option.textContent = type;
                 select.appendChild(option);
             });
+            // 恢复之前选中的值（如果该值仍然有效）
+            if (currentValue && soundFiles[currentValue]) {
+                select.value = currentValue;
+            }
         });
     }
 
@@ -102,7 +126,8 @@ var audioController = (function() {
         play: play,
         getAudioSrc: getAudioSrc,
         populateAudioSelect: populateAudioSelect,
-        removeInvalidAudioOptions: removeInvalidAudioOptions
+        removeInvalidAudioOptions: removeInvalidAudioOptions,
+        _populateSelectOptions: _populateSelectOptions
     };
 })();
 
