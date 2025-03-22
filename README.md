@@ -1,6 +1,9 @@
 # ExamSchedule
 
-不只是考试看板。
+**不只是考试看板。**
+
+![es](./doc/es.png)
+
 
 ![main](/assets/main.png)
 
@@ -14,6 +17,7 @@
   - 支持自定义广播配置。
   - 支持打开本地json配置
 
+
 ### 考试看板设置说明
 
 点击设置按钮可以打开设置窗口，进行以下配置：
@@ -21,6 +25,7 @@
 - **时间偏移**：用于调整显示的时间，单位为秒。
 - **考场信息**：用于显示当前考场的名称。
 - **页面缩放倍数**：用于调整页面显示的缩放倍数。
+- **亮/暗色模式**：用于切换页面的亮/暗色模式背景。
 
 配置完成后点击保存按钮，设置将会保存到浏览器的Cookie中，并立即生效。
 
@@ -36,31 +41,19 @@
 
 ### 主界面
 
-![main](/assets/main.png)   
+![es](./doc/es.png)   
 
 #### 考试展板界面
-
-#### 暗色模式
-
-![exam](/assets/dark.png)
-
-![settings](/assets/settings.png)
-
-#### 亮色模式
-
-![exam-light](/assets/light.png)
+![exam](./doc/exam.png)   
 
 #### 电子钟表界面   
+![time](./doc/time.png)
 
-### 广播模式
-
-![notification](/assets/notification.jpeg)
-
-![time](/assets/time.png)
+#### 考试广播界面
+![notification](./doc/notification.png)
 
 ## 如何部署？   
-
- 您可以点击查看 [ExamShowboard网页端 部署文档](https://docs.examaware.us.kg)了解详细的部署教程。   
+ 您可以点击查看 [ExamShowboard网页端部署教程文档](https://docs.examaware.tech/web/web-deploy.html)了解详细的部署教程。   
 
 ## 开发说明
 
