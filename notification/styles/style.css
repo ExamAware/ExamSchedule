@@ -12,6 +12,34 @@ body {
     position: relative;
 }
 
+/* 考试信息板块 */
+.exam-info {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.exam-info h1 {
+    margin: 0;
+    font-size: 32px;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.exam-room {
+    font-size: 18px;
+    color: #57606f;
+}
+
+.exam-message {
+    font-size: 20px;
+    color: #57606f;
+    margin-top: 10px;
+}
+
 /* 状态显示框 */
 .status-box {
     background: linear-gradient(145deg, #ffffff, #f8f9fa);
@@ -80,46 +108,9 @@ body {
     color: #a4b0be;
 }
 
-/* 全屏模式 */
+/* 移除全屏模式相关样式 */
 .fullscreen-mode {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #ffffff;
-    z-index: 9999;
-    padding: 0;
-    margin: 0;
-    overflow: hidden;
-}
-.fullscreen-mode .status-box {
-    width: 100%;
-    height: 100%;
-    border: none;
-    box-shadow: none;
-    border-radius: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: none;
-}
-.fullscreen-mode .time-display {
-    font-size: 25vw;
-    line-height: 0.9;
-    color: #2c3e50;
-}
-.fullscreen-mode .status-label {
-    font-size: 6vw;
-    margin-top: 4vw;
-    color: #57606f;
-}
-.fullscreen-mode .control-bar,
-.fullscreen-mode .settings-panel,
-.fullscreen-mode .schedule-table {
-    display: none !important;
+    display: none;
 }
 
 /* 控制按钮 */
@@ -481,4 +472,8 @@ body.dark-mode .action-btn {
 }
 body.dark-mode .action-btn:hover {
     box-shadow: 0 6px 16px rgba(39, 174, 96, 0.35);
+}
+
+body.dark-mode .exam-message {
+    color: #bdc3c7;
 }

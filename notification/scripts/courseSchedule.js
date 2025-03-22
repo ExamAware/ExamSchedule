@@ -1,12 +1,23 @@
 var courseSchedule = [];
 
-fetch('course_schedule.json')
-    .then(response => response.json())
-    .then(data => {
-        courseSchedule = data;
-        updateScheduleTable();
-    })
-    .catch(error => errorSystem.show('加载课程表失败: ' + error.message, 'error'));
+// 将fetch移动到函数中以便控制初始化顺序
+function loadCourseSchedule() {
+    return fetch('course_schedule.json')
+        .then(response => response.json())
+        .then(data => {
+            courseSchedule = data.examInfos || [];
+            document.title = data.examName || '考试看板';
+            document.getElementById('examTitle').textContent = data.examName || '考试看板';
+            document.getElementById('examMessage').textContent = data.message || '';
+            document.getElementById('timeDescription').textContent = data.room ? '考场: ' + data.room : '';
+            updateScheduleTable();
+            return courseSchedule;
+        })
+        .catch(error => {
+            errorSystem.show('加载课程表失败: ' + error.message, 'error');
+            return [];
+        });
+}
 
 function parseTime(timeStr) {
     try {
@@ -59,25 +70,30 @@ function getNextCourse() {
     }
 }
 
+// 修改更新表格函数，增加数据检查
 function updateScheduleTable() {
     try {
-        var now = new Date(),
-            table = document.getElementById('scheduleTable'),
-            rows = table.querySelectorAll('tr:not(:first-child)');
-        rows.forEach(row => row.remove()); // 清空现有行
+        if (!Array.isArray(courseSchedule)) {
+            errorSystem.show('课程表数据格式错误', 'error');
+            return;
+        }
+        
+        var now = new Date();
+        var table = document.getElementById('scheduleTable');
+        // 清空现有行，保留表头
+        while (table.rows.length > 1) {
+            table.deleteRow(1);
+        }
+        
         courseSchedule.forEach(function(course) {
             var row = table.insertRow(-1);
             row.innerHTML = '<td>' + course.name + '</td>' +
-                            '<td>' + formatDateTime(course.start) + ' - ' + formatDateTime(course.end) + '</td>' +
-                            '<td></td>';
-        });
-        for (var i = 0; i < courseSchedule.length; i++) {
-            var course = courseSchedule[i];
-            if (!course) continue; // 确保不会超出数组边界
-            var start = parseTime(course.start),
-                end = parseTime(course.end),
-                row = table.rows[i + 1]; // 跳过表头行
-            row.className = '';
+                          '<td>' + formatDateTime(course.start) + ' - ' + formatDateTime(course.end) + '</td>' +
+                          '<td></td>';
+            
+            var start = parseTime(course.start);
+            var end = parseTime(course.end);
+            
             if (now >= start && now <= end) {
                 row.className = 'current-class';
                 row.cells[2].textContent = '进行中';
@@ -88,7 +104,7 @@ function updateScheduleTable() {
                 row.className = 'past-class';
                 row.cells[2].textContent = '已结束';
             }
-        }
+        });
     } catch (e) {
         errorSystem.show('课程表更新失败: ' + e.message, 'error');
     }

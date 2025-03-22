@@ -30,9 +30,10 @@ function applyConfig(config) {
         }
         if (config.examName) {
             document.title = config.examName;
+            document.getElementById('examTitle').textContent = config.examName;
         }
         if (config.message) {
-            document.getElementById('statusLabel').textContent = config.message;
+            document.getElementById('examMessage').textContent = config.message;
         }
         if (config.room) {
             document.getElementById('timeDescription').textContent = '考场: ' + config.room;
