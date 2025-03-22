@@ -42,9 +42,8 @@ function applyConfig(config) {
                     document.getElementById('timeDescription').textContent = '考场: ' + config.room;
                 }
 
-                // 只在没有 Cookie 数据时才处理配置文件中的提醒设置
-                if (!reminderCookie && config.reminders) {
-                    // 验证并修复提醒中的音频设置
+                // 验证并修复提醒中的音频设置
+                if (config.reminders) {
                     config.reminders = config.reminders.map(reminder => {
                         if (!validAudioTypes.includes(reminder.audio)) {
                             errorSystem.show(`音频"${reminder.audio}"不存在，已替换为"${defaultAudio}"`, 'info');
@@ -53,10 +52,13 @@ function applyConfig(config) {
                         return reminder;
                     });
 
+                    // 清空现有提醒表
                     var table = document.getElementById('reminderTable');
                     while (table.rows.length > 2) {
                         table.deleteRow(1);
                     }
+
+                    // 添加新的提醒设置
                     config.reminders.forEach(function(reminder) {
                         var row = table.insertRow(table.rows.length - 1);
                         let audioOptions = validAudioTypes
@@ -86,11 +88,12 @@ function applyConfig(config) {
                             row.cells[1].querySelector('input').placeholder = this.value === 'start' || this.value === 'end' ? '-' : '分钟';
                         });
                     });
+
+                    // 只更新提醒队列，不保存到 Cookie
                     loadRemindersToQueue(config.reminders);
-                    saveSettingsToCookies();
                 }
                 
-                errorSystem.show('配置导入成功', 'info');
+                errorSystem.show('配置导入成功（临时生效）', 'info');
             })
             .catch(err => {
                 errorSystem.show('获取音频列表失败: ' + err.message, 'error');
