@@ -5,6 +5,7 @@
 ![es](./doc/es.png)
 
 ## 功能
+
 - 考试看板
   - 实时显示当前时间、当前考试科目、考试起止时间、剩余时间及考试状态。
   - 支持全屏显示。
@@ -13,7 +14,6 @@
 - 时间广播
   - 支持自定义广播配置。
   - 支持打开本地json配置
-
 
 ### 考试看板设置说明
 
@@ -38,19 +38,27 @@
 
 ### 主界面
 
-![es](./doc/es.png)   
+![es](./doc/es.png)
 
 #### 考试展板界面
-![exam](./doc/exam.png)   
 
-#### 电子钟表界面   
+![exam](./doc/exam.png)
+
+#### 电子钟表界面
+
 ![time](./doc/time.png)
 
 #### 考试广播界面
+
 ![notification](./doc/notification.png)
 
-## 如何部署？   
- 您可以点击查看 [ExamShowboard网页端部署教程文档](https://docs.examaware.tech/web/web-deploy.html)了解详细的部署教程。   
+## 如何部署？
+
+ 您可以点击查看 [ExamShowboard网页端部署教程文档](https://docs.examaware.tech/web/web-deploy.html)了解详细的部署教程。
+
+> [!WARNING]
+>
+> 注意，广播与看板的配置文件是**分开存储于两个文件夹之下的**。
 
 ## 开发说明
 
