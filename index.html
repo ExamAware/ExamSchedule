@@ -53,10 +53,13 @@
             list-style: none;
             padding: 0;
             margin: 0;
+            display: flex; /* 改为横向排布 */
+            justify-content: center; /* 居中对齐 */
+            gap: 30px; /* 按钮之间的间距 */
             animation: fadeInUp 1s ease-in-out;
         }
         li {
-            margin-bottom: 30px;
+            margin-bottom: 0; /* 移除垂直间距 */
         }
         a {
             color: #fff;
