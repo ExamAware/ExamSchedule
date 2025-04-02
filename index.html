@@ -1,82 +1,61 @@
-<!--
-					   _ooOoo_
-					  o8888888o
-					  88" . "88
-					  (| -_- |)
-					  O\  =  /O
-				   ____/---\____
-				 .'  \\|     |//  '.
-				/  \\|||  :  |||//  \
-			   /  _||||| -:- |||||-  \
-			   |   | \\\  -  /// |   |
-			   | _|  ''---/''  |   |
-			   \  .-\__  `-`  ___/-. /
-			 ___`. .'  /--.--\  `. . __
-		  ."" '<  `.___\_<|>_/___.'  >'"".
-		 | | :  `- \.;`\ _ /';.\ - ` : | |
-		 \  \ `-.   \_ __\ /__ _/   .-\ /  /
-	======`-.____`-.___\_____/___.-`____.-'======
-					   `=---='
-	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-			 佛祖保佑       永无BUG
--->
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-	<link rel="shortcut icon" href="./favicon.ico">
+    <link rel="shortcut icon" href="./favicon.ico">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>选择页面</title>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         body {
-            background-image: url('./background.jpg');
-            background-size: cover;
-            background-repeat: no-repeat;
+            background: #1C1B1F;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* 使用更现代的字体 */
-            color: #fff;
-            background-color: rgba(0, 0, 0, 0.5); /* 添加半透明背景 */
-            backdrop-filter: blur(5px); /* 添加背景模糊效果 */
+            font-family: 'Google Sans', 'Roboto', sans-serif;
+            color: #E6E1E5;
+            backdrop-filter: blur(10px);
         }
+
         h1 {
-            color: #fff;
+            color: #E6E1E5;
             font-size: 48px;
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             animation: fadeInUp 1s ease-in-out;
+            font-weight: 500;
         }
+
         ul {
             list-style: none;
             padding: 0;
             margin: 0;
-            display: flex; /* 改为横向排布 */
-            justify-content: center; /* 居中对齐 */
-            gap: 30px; /* 按钮之间的间距 */
+            display: flex;
+            justify-content: center;
+            gap: 16px;
             animation: fadeInUp 1s ease-in-out;
         }
-        li {
-            margin-bottom: 0; /* 移除垂直间距 */
-        }
+
         a {
-            color: #fff;
+            color: #E6E1E5;
             text-decoration: none;
-            font-size: 24px;
-            font-weight: bold;
-            padding: 15px 30px;
-            border-radius: 8px;
-            background-color: rgba(255, 255, 255, 0.1);
+            font-size: 16px;
+            font-weight: 500;
+            padding: 16px 24px;
+            border-radius: 100px;
+            background-color: #49454F;
             transition: all 0.3s ease;
             display: inline-block;
         }
+
         a:hover {
-            background-color: rgba(255, 255, 255, 0.3);
-            transform: translateY(-3px);
+            background-color: #605D64;
+            transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
+
         @keyframes fadeInUp {
             0% {
                 opacity: 0;
@@ -87,15 +66,36 @@
                 transform: translateY(0);
             }
         }
+
         .copyright {
             position: absolute;
-            bottom: 10px;
+            bottom: 16px;
             width: 100%;
             text-align: center;
-            font-size: 20px;
-            color: rgba(255, 255, 255, 0.8);
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+            font-size: 14px;
+            color: #CAC4D0;
             animation: fadeInUp 1s ease-in-out;
+        }
+
+        .github-link {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background-color: transparent;
+            padding: 8px;
+            border-radius: 50%;
+        }
+
+        .github-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: none;
+            box-shadow: none;
+        }
+
+        .github-link img {
+            width: 24px;
+            height: 24px;
+            filter: invert(1);
         }
     </style>
 </head>
@@ -108,8 +108,8 @@
     </ul>
 
     <!-- 添加GitHub图标跳转项目地址 -->
-    <a href="https://github.com/ExamAware/ExamSchedule" target="_blank" style="position: absolute; top: 10px; right: 10px; z-index: 1000;">
-        <img src="./github-icon.png" alt="GitHub" style="width: 30px; height: 30px;" title="在GitHub上查看源代码">
+    <a href="https://github.com/ExamAware/ExamSchedule" target="_blank" class="github-link">
+        <img src="./github-icon.png" alt="GitHub" title="在GitHub上查看源代码">
     </a>
 
     <!-- 新增版权信息 -->
