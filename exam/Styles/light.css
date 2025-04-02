@@ -2,10 +2,8 @@ body {
     font-family: 'HarmonyOS Sans SC Regular', 'Roboto', Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: url('../../background_light.jpg') no-repeat center center fixed;
-    background-size: cover;
-    animation: fadeIn 1s;
-    color: #333;
+    background: #FAFBFF;
+    color: #1C1B1F;
     overflow: auto;
 }
 
@@ -21,16 +19,15 @@ body::-webkit-scrollbar {
 #fullscreen-btn, #settings-btn {
     position: absolute;
     top: 20px;
-    padding: 10px 20px;
-    font-size: 1rem;
+    padding: 12px 24px;
+    font-size: 0.875rem;
     cursor: pointer;
-    background-color: #f0f0f0;
-    color: #333;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    z-index: 1001;
+    background-color: #6750A4;
+    color: #fff;
+    border: none;
+    border-radius: 100px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+    transition: box-shadow 0.3s, background-color 0.3s;
 }
 
 #fullscreen-btn {
@@ -42,15 +39,14 @@ body::-webkit-scrollbar {
 }
 
 #settings-btn:hover, #fullscreen-btn:hover {
-    background-color: #ccc;
-    transform: scale(1.05);
+    background-color: #7965AF;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 .container {
-    padding: 20px;
     max-width: 1400px;
     margin: auto;
-    background-color: rgba(255, 255, 255, 0.4);
+    background-color: #FAFBFF;
 }
 
 h1 {
@@ -75,7 +71,7 @@ h1 {
 
 #message {
     font-size: 1.5rem;
-    color: #16a3d1;
+    color: #6750A4;
     margin-bottom: 20px;
 }
 
@@ -100,11 +96,10 @@ h1 {
 }
 
 .clock-section, .info-section, .right-column {
-    background-color: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    border-radius: 8px;
+    background-color: #fff;
+    border-radius: 28px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
 .clock-section, .info-section {
@@ -128,37 +123,39 @@ h1 {
 
 table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
     margin-top: 20px;
-    border: 1px solid #000;
-    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+    border: none;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    background-color: #fff;
+    overflow: hidden;
+}
+
+th:first-child {
+    border-top-left-radius: 16px;
+}
+
+th:last-child {
+    border-top-right-radius: 16px;
 }
 
 th, td {
-    border: 1px solid #000;
+    border: none;
     padding: 0px;
     font-size: 1.8rem;
     text-align: center;
 }
 
 th {
-    background-color: #f0f0f0;
-    color: #333;
-    font-weight: bold;
-    border-bottom: 2px solid #000;
+    background-color: #F4EEFF;
+    color: #1C1B1F;
+    font-weight: 500;
 }
 
 tr:hover {
     background-color: #f0f0f0;
-}
-
-table {
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-td {
-    border-bottom: 1px solid #000;
 }
 
 td:first-child {
@@ -172,31 +169,30 @@ td:last-child {
 }
 
 .exam-status-tag {
-    padding: 3px 6px;
-    border-radius: 4px;
-    font-size: 1.2rem;
-    display: inline-block;
-    min-width: 60px;
+    padding: 6px 12px;
+    border-radius: 100px;
+    font-size: 0.875rem;
+    font-weight: 500;
 }
 
 .exam-status-进行中 {
-    background-color: rgba(91, 168, 56, 0.1);
-    color: #5ba838;
+    background-color: #E6F4EA;
+    color: #1E8E3E;
 }
 
 .exam-status-即将开始 {
-    background-color: rgba(254, 153, 1, 0.1);
-    color: #fe9901;
+    background-color: #FEF7E0;
+    color: #B95000;
 }
 
 .exam-status-已结束 {
-    background-color: rgba(236, 4, 52, 0.1);
-    color: #ec0434;
+    background-color: #FCE8E6;
+    color: #D93025;
 }
 
 .exam-status-未开始 {
-    background-color: rgba(238, 238, 91, 0.1);
-    color: #d4b106;
+    background-color: #F3F3F3;
+    color: #5F6368;
 }
 
 #settings-modal {
@@ -213,13 +209,13 @@ td:last-child {
 }
 
 #settings-modal-content {
-    background: rgba(255, 255, 255, 0.95);
-    padding: 25px;
+    background: #fff;
+    border-radius: 28px;
+    padding: 32px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    max-width: 500px;
+    width: 90%;
     margin: 25px auto;
-    border-radius: 12px;
-    border: 1px solid #ccc;
-    backdrop-filter: blur(8px);
-    max-width: 600px;
     animation: fadeIn 0.5s ease;
 }
 
@@ -239,7 +235,7 @@ td:last-child {
 
 #settings-modal-content h3 {
     margin: 0 0 20px;
-    color: #333;
+    color: #1C1B1F;
     font-size: 20px;
 }
 
@@ -260,60 +256,54 @@ td:last-child {
 
 #settings-modal-content input[type="number"],
 #settings-modal-content input[type="text"] {
-    flex-grow: 1;
-    margin-left: 10px;
-}
-
-#settings-modal-content input[type="number"],
-#settings-modal-content input[type="text"] {
-    font-size: 1.5rem;
-    padding: 10px;
-    margin-top: 10px;
-    margin-bottom: 20px;
+    background-color: #F4EEFF;
+    color: #1C1B1F;
+    border: 1px solid #938F99;
+    border-radius: 5px;
+    padding: 12px;
     width: 100%;
     box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #fff;
-    color: #333;
+    font-size: 1rem;
+    margin-top: 8px;
+    margin-bottom: 16px;
 }
 
 #settings-modal-content input:focus {
+    border-color: #6750A4;
+    box-shadow: 0 0 0 1px #6750A4;
     outline: none;
-    border-color: #007acc;
-    box-shadow: 0 0 0 1px #007acc;
 }
 
 .button-group {
     display: flex;
     justify-content: flex-end;
     gap: 10px;
+    margin-top: 24px;
 }
 
 #settings-modal-content button {
-    background: linear-gradient(135deg, #3498db, #2980b9);
-    color: white;
-    border: none;
     padding: 12px 24px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 15px;
+    font-size: 0.875rem;
     font-weight: 500;
-    transition: all 0.2s ease;
-    box-shadow: 0 4px 12px rgba(52,152,219,0.25);
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    background: #6750A4;
+    color: #fff;
+    transition: all 0.3s ease;
 }
 
 #settings-modal-content button:hover {
+    background: #7965AF;
     transform: translateY(-1px);
-    box-shadow: 0 6px 16px rgba(52,152,219,0.35);
 }
 
 #close-settings-btn {
     padding: 10px 20px;
     font-size: 2rem;
     cursor: pointer;
-    background-color: #d9534f;
-    color: white;
+    background-color: #B3261E !important;
+    color: #fff !important;
     border: none;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -321,7 +311,7 @@ td:last-child {
 }
 
 #close-settings-btn:hover {
-    background-color: #c9302c;
+    background-color: #930D0D !important;
 }
 
 .error-container {
@@ -329,9 +319,9 @@ td:last-child {
     bottom: 0;
     left: 0;
     right: 0;
-    background: #ff6b6b;
+    background: #B3261E;
+    padding: 16px 24px;
     color: white;
-    padding: 16px;
     display: none;
     z-index: 10001;
     animation: slideUp 0.3s ease;
@@ -409,11 +399,12 @@ input:checked + .slider:before {
     transform: translateX(26px);
 }
 
-.theme-toggle-container {
+theme-toggle-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 10px;
+    margin: 12px 0;
 }
 
 .config-file-container {
@@ -454,8 +445,8 @@ input:checked + .slider:before {
 .config-control-btn {
     margin-top: 10px;
     padding: 8px 16px;
-    background-color: #d9534f;
-    color: white;
+    background-color: #B3261E !important;
+    color: white !important;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -464,5 +455,5 @@ input:checked + .slider:before {
 }
 
 .config-control-btn:hover {
-    background-color: #c9302c;
+    background-color: #930D0D !important;
 }
