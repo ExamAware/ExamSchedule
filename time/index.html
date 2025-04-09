@@ -33,87 +33,101 @@
 	<style>
 		/* 基础样式 */
 		body {
-			font-family: 'Segoe UI', Arial, sans-serif;
+			font-family: 'Roboto', 'HarmonyOS Sans SC', sans-serif;
 			margin: 0;
 			padding: 20px;
-			background: url('../background.jpg') no-repeat center center fixed;
-			background-size: cover;
-			color: #ecf0f1;
+			background: #1C1B1F;
+			color: #E6E1E5;
 			display: flex;
 			justify-content: center;
 			align-items: center;
 			height: 100vh;
-			background-color: #2c3e50;
 		}
 
 		.container {
 			text-align: center;
-			background: rgba(255, 255, 255, 0);
-			padding: 30px;
-			animation: fadeIn 2s ease-in-out;
+			background: #2B2930;
+			padding: 48px;
+			border-radius: 28px;
+			box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+			animation: fadeIn 0.3s ease-in-out;
 		}
 
 		.time {
 			font-size: 10rem;
 			margin: 0;
-			color: #ecf0f1;
-			font-weight: 700;
-			text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-			animation: glow 1s ease-in-out infinite alternate;
+			color: #D0BCFF;
+			font-weight: 400;
+			text-shadow: none;
 		}
 
 		.text {
 			font-size: 1.5rem;
-			margin-bottom: 20px;
-			color: #bdc3c7;
-		}
-
-		.btn {
-			padding: 10px 25px;
-			margin: 10px;
-			border: none;
-			border-radius: 8px;
-			cursor: pointer;
-			transition: all 0.3s ease;
-			font-weight: 500;
-			background: linear-gradient(135deg, #3498db, #2980b9);
-			color: white;
-			box-shadow: 0 4px 12px rgba(52, 152, 219, 0.25);
-		}
-
-		.btn:hover {
-			transform: translateY(-1px);
-			box-shadow: 0 6px 16px rgba(52, 152, 219, 0.35);
+			margin-bottom: 32px;
+			color: #E6E1E5;
 		}
 
 		.controls {
-			margin-top: 30px;
+			margin-top: 40px;
+			display: flex;
+			gap: 12px;
+			flex-wrap: wrap;
+			justify-content: center;
+		}
+
+		.btn, #fontSelector {
+			padding: 12px 24px;
+			border: none;
+			border-radius: 20px;
+			cursor: pointer;
+			transition: all 0.2s ease;
+			font-size: 1rem;
+			font-weight: 500;
+			background-color: #4A4458;
+			color: #E6E1E5;
+			box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+		}
+
+		.btn:hover, #fontSelector:hover {
+			background-color: #635B70;
+			transform: translateY(-1px);
+			box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+		}
+
+		#fontSelector {
+			padding: 10px 20px;
 		}
 
 		.btn.fullscreen {
-			background: linear-gradient(135deg, #e74c3c, #c0392b);
-			color: #fff;
+			background-color: #5C1130;
+			color: #FFB3B3;
 		}
 
-		/* 动画效果 */
+		.btn.fullscreen:hover {
+			background-color: #7D2046;
+		}
+
+		/* 简化动画效果 */
 		@keyframes fadeIn {
-			from {
-				opacity: 0;
-			}
-
-			to {
-				opacity: 1;
-			}
+			from { opacity: 0; transform: translateY(10px); }
+			to { opacity: 1; transform: translateY(0); }
 		}
 
-		@keyframes glow {
-			from {
-				text-shadow: 0 0 10px #222;
-			}
+		/* 删除发光动画，符合 MD3 的简洁风格 */
+		
+		/* 下拉菜单样式 */
+		select {
+			appearance: none;
+			background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E6E1E5'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+			background-repeat: no-repeat;
+			background-position: right 10px center;
+			background-size: 20px;
+			padding-right: 40px;
+		}
 
-			to {
-				text-shadow: 0 0 20px #000;
-			}
+		select option {
+			background-color: #2B2930;
+			color: #E6E1E5;
 		}
 	</style>
 </head>
