@@ -183,28 +183,28 @@ tr:hover {
 
 #settings-modal-content {
     background: #2B2930;
-    padding: 32px;
-    margin: 32px auto;  /* 减小上边距 */
+    padding: 32px 48px 32px 32px;
+    margin: 32px auto;
     border-radius: 28px;
-    max-width: 600px;
-    max-height: 60vh;   /* 添加最大高度 */
-    overflow-y: auto;   /* 添加垂直滚动 */
+    width: 600px;
+    max-height: 60vh;
+    overflow-y: auto;
     box-shadow: 0 8px 24px rgba(0,0,0,0.4);
 }
 
-/* 添加滚动条样式 */
 #settings-modal-content::-webkit-scrollbar {
     width: 8px;
 }
 
 #settings-modal-content::-webkit-scrollbar-track {
-    background: #1C1B1F;
-    border-radius: 4px;
+    background: transparent;
+    margin: 4px;
 }
 
 #settings-modal-content::-webkit-scrollbar-thumb {
     background: #4A4458;
-    border-radius: 4px;
+    border-radius: 8px;
+    border: 2px solid #2B2930;
 }
 
 #settings-modal-content::-webkit-scrollbar-thumb:hover {
