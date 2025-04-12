@@ -1,82 +1,103 @@
+#return-btn {
+    position: absolute; /* 绝对定位 */
+    top: 20px; /* 距离顶部 20px */
+    left: 20px; /* 距离左侧 20px */
+    padding: 10px 20px; /* 内边距 */
+    font-size: 1rem; /* 字体大小 */
+    cursor: pointer; /* 鼠标悬停时显示为手型 */
+    background-color: #f0f0f0; /* 按钮背景颜色 */
+    color: #333; /* 按钮文字颜色 */
+    border: 1px solid #ccc; /* 按钮边框 */
+    border-radius: 5px; /* 按钮圆角 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 按钮阴影 */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* 背景颜色和缩放的过渡效果 */
+    z-index: 1001; /* 设置按钮的层级，确保在其他元素之上 */
+}
+
+#return-btn:hover {
+    background-color: #ccc; /* 悬停时的背景颜色 */
+    transform: scale(1.05); /* 悬停时放大 5% */
+}
+
 body {
-    font-family: 'HarmonyOS Sans SC Regular', 'Roboto', Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: url('background_light.jpg') no-repeat center center fixed;
-    background-size: cover;
-    animation: fadeIn 1s;
-    color: #333;
-    overflow: auto;
+    font-family: 'HarmonyOS Sans SC Regular', 'Roboto', Arial, sans-serif; /* 设置字体 */
+    margin: 0; /* 去除默认外边距 */
+    padding: 0; /* 去除默认内边距 */
+    background: url('background_light.jpg') no-repeat center center fixed; /* 设置背景图片 */
+    background-size: cover; /* 背景图片覆盖整个页面 */
+    animation: fadeIn 1s; /* 页面加载时的淡入动画 */
+    color: #333; /* 全局文字颜色 */
+    overflow: auto; /* 允许页面滚动 */
 }
 
 body::-webkit-scrollbar {
-    display: none;
+    display: none; /* 隐藏滚动条 */
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from { opacity: 0; } /* 动画开始时透明 */
+    to { opacity: 1; } /* 动画结束时完全显示 */
 }
 
 #fullscreen-btn, #settings-btn {
-    position: absolute;
-    top: 20px;
-    padding: 10px 20px;
-    font-size: 1rem;
-    cursor: pointer;
-    background-color: #f0f0f0;
-    color: #333;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    z-index: 1001;
+    position: absolute; /* 绝对定位 */
+    top: 20px; /* 距离顶部 20px */
+    padding: 10px 20px; /* 内边距 */
+    font-size: 1rem; /* 字体大小 */
+    cursor: pointer; /* 鼠标悬停时显示为手型 */
+    background-color: #f0f0f0; /* 按钮背景颜色 */
+    color: #333; /* 按钮文字颜色 */
+    border: 1px solid #ccc; /* 按钮边框 */
+    border-radius: 5px; /* 按钮圆角 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 按钮阴影 */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* 背景颜色和缩放的过渡效果 */
+    z-index: 1001; /* 设置按钮的层级，确保在其他元素之上 */
 }
 
 #fullscreen-btn {
-    right: 20px;
+    right: 20px; /* 距离右侧 20px */
 }
 
 #settings-btn {
-    right: 120px;
+    right: 120px; /* 距离右侧 120px */
 }
 
 #settings-btn:hover, #fullscreen-btn:hover {
-    background-color: #ccc;
-    transform: scale(1.05);
+    background-color: #ccc; /* 悬停时的背景颜色 */
+    transform: scale(1.05); /* 悬停时放大 5% */
 }
 
 .container {
-    padding: 20px;
-    max-width: 1400px;
-    margin: auto;
-    background-color: rgba(255, 255, 255, 0.4);
+    padding: 20px; /* 内边距 */
+    max-width: 1400px; /* 最大宽度 */
+    margin: auto; /* 居中对齐 */
+    background-color: rgba(255, 255, 255, 0.4); /* 半透明背景 */
 }
 
 h1 {
-    font-size: 3.5rem;
-    font-weight: bold;
-    text-align: left;
-    margin-bottom: 10px;
-    color: #333;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    font-size: 3.5rem; /* 字体大小 */
+    font-weight: bold; /* 字体加粗 */
+    text-align: left; /* 左对齐 */
+    margin-bottom: 10px; /* 下边距 */
+    color: #333; /* 文字颜色 */
+    display: flex; /* 使用 flex 布局 */
+    align-items: center; /* 垂直居中 */
+    justify-content: space-between; /* 两端对齐 */
 }
 
 #room {
-    font-size: 3.5rem;
-    font-weight: bold;
-    color: #333;
-    position: relative;
-    right: 0;
-    margin-left: 20px;
+    font-size: 3.5rem; /* 字体大小 */
+    font-weight: bold; /* 字体加粗 */
+    color: #333; /* 文字颜色 */
+    position: relative; /* 相对定位 */
+    right: 0; /* 向右移动 0 */
+    margin-left: 20px; /* 左边距 */
 }
 
 #message {
-    font-size: 1.5rem;
-    color: #16a3d1;
-    margin-bottom: 20px;
+    font-size: 1.5rem; /* 字体大小 */
+    color: #16a3d1; /* 文字颜色 */
+    margin-bottom: 20px; /* 下边距 */
 }
 
 .content {
@@ -127,11 +148,11 @@ h1 {
 }
 
 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    border: 1px solid #000;
-    background-color: rgba(255, 255, 255, 0.5);
+    width: 100%; /* 表格宽度 */
+    border-collapse: collapse; /* 合并边框 */
+    margin-top: 20px; /* 上边距 */
+    border: 1px solid #000; /* 表格边框 */
+    background-color: rgba(255, 255, 255, 0.5); /* 半透明背景 */
 }
 
 th, td {
@@ -142,14 +163,14 @@ th, td {
 }
 
 th {
-    background-color: #f0f0f0;
-    color: #333;
-    font-weight: bold;
-    border-bottom: 2px solid #000;
+    background-color: #f0f0f0; /* 背景颜色 */
+    color: #333; /* 文字颜色 */
+    font-weight: bold; /* 字体加粗 */
+    border-bottom: 2px solid #000; /* 下边框 */
 }
 
 tr:hover {
-    background-color: #f0f0f0;
+    background-color: #f0f0f0; /* 背景颜色 */
 }
 
 table {
@@ -158,17 +179,20 @@ table {
 }
 
 td {
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid #000; /* 下边框 */
+    padding: 0px; /* 内边距 */
+    font-size: 1.8rem; /* 字体大小 */
+    text-align: center; /* 居中对齐 */
 }
 
 td:first-child {
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
+    border-top-left-radius: 8px; /* 左上角圆角 */
+    border-bottom-left-radius: 8px; /* 左下角圆角 */
 }
 
 td:last-child {
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
+    border-top-right-radius: 8px; /* 右上角圆角 */
+    border-bottom-right-radius: 8px; /* 右下角圆角 */
 }
 
 .exam-status-tag {
@@ -430,7 +454,7 @@ input:checked + .slider:before {
     transform: translateX(26px);
 }
 
-.theme-toggle-container {
+theme-toggle-container {
     display: flex;
     align-items: center;
     justify-content: space-between;

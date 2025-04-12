@@ -1,3 +1,25 @@
+#return-btn {
+    position: absolute; /* 绝对定位 */
+    top: 20px; /* 距离顶部 20px */
+    left: 20px; /* 距离左侧 20px */
+    padding: 12px 24px; /* 内边距 */
+    font-size: 1rem; /* 字体大小 */
+    cursor: pointer; /* 鼠标悬停时显示为手型 */
+    background-color: #2b2b2b; /* 按钮背景颜色 */
+    color: #ffffff; /* 按钮文字颜色 */
+    border: 1px solid #444444; /* 按钮边框样式 */
+    border-radius: 20px; /* 按钮圆角大小 */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* 按钮阴影 */
+    transition: all 0.2s ease; /* 背景颜色和缩放的过渡效果 */
+    z-index: 1001; /* 按钮层级 */
+}
+
+#return-btn:hover {
+    background-color: #3c3c3c; /* 悬停时的背景颜色 */
+    transform: translateY(-1px); /* 悬停时向上移动 1px */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4); /* 悬停时的阴影效果 */
+}
+
 body {
     font-family: 'Roboto', 'HarmonyOS Sans SC', sans-serif;
     margin: 0;

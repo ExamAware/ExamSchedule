@@ -1,0 +1,112 @@
+/* 基础样式 */
+body {
+    font-family: 'Roboto', 'HarmonyOS Sans SC', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: #1C1B1F;
+    color: #E6E1E5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    text-align: center;
+    background: #2B2930;
+    padding: 48px;
+    border-radius: 28px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.time {
+    font-size: 10rem;
+    margin: 0;
+    color: #D0BCFF;
+    font-weight: 400;
+    text-shadow: none;
+}
+
+.text {
+    font-size: 1.5rem;
+    margin-bottom: 32px;
+    color: #E6E1E5;
+}
+
+.controls {
+    margin-top: 40px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn,
+#fontSelector {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 1rem;
+    font-weight: 500;
+    background-color: #4A4458;
+    color: #E6E1E5;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.btn:hover,
+#fontSelector:hover {
+    background-color: #635B70;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+#fontSelector {
+    padding: 10px 20px;
+}
+
+.btn.fullscreen {
+    background-color: #5C1130;
+    color: #FFB3B3;
+}
+
+.btn.fullscreen:hover {
+    background-color: #7D2046;
+}
+
+/* 返回按钮样式 */
+#return-btn {
+    position: absolute; /* 绝对定位 */
+    top: 20px; /* 距离顶部 20px */
+    left: 20px; /* 距离左侧 20px */
+    padding: 12px 24px; /* 内边距 */
+    font-size: 1rem; /* 字体大小 */
+    cursor: pointer; /* 鼠标悬停时显示为手型 */
+    background-color: #2b2b2b; /* 按钮背景颜色 */
+    color: #ffffff; /* 按钮文字颜色 */
+    border: 1px solid #444444; /* 按钮边框样式 */
+    border-radius: 20px; /* 按钮圆角大小 */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* 按钮阴影 */
+    transition: all 0.2s ease; /* 背景颜色和缩放的过渡效果 */
+    z-index: 1001; /* 按钮层级 */
+}
+
+#return-btn:hover {
+    background-color: #3c3c3c; /* 悬停时的背景颜色 */
+    transform: translateY(-1px); /* 悬停时向上移动 1px */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4); /* 悬停时的阴影效果 */
+}
+
+/* 简化动画效果 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
