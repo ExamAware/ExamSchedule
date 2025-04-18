@@ -102,45 +102,36 @@ function loadRemindersToQueue(reminders) {
     var now = Date.now();
     reminders.forEach(function(reminder) {
         var reminderTime;
+        var targetCourse;
         if (currentCourse) {
-            switch (reminder.condition) {
-                case 'beforeStart':
-                    reminderTime = new Date(currentCourse.start).getTime() - reminder.time * 60000;
-                    break;
-                case 'beforeEnd':
-                    reminderTime = new Date(currentCourse.end).getTime() - reminder.time * 60000;
-                    break;
-                case 'afterEnd':
-                    reminderTime = new Date(currentCourse.end).getTime() + reminder.time * 60000;
-                    break;
-                case 'start':
-                    reminderTime = new Date(currentCourse.start).getTime();
-                    break;
-                case 'end':
-                    reminderTime = new Date(currentCourse.end).getTime();
-                    break;
-                default:
-                    console.error('未知的提醒条件:', reminder.condition);
-                    return;
-            }
-        } else {
-            var nextCourse = getNextCourse();
-            if (nextCourse) {
-                switch (reminder.condition) {
-                    case 'beforeStart':
-                        reminderTime = new Date(nextCourse.start).getTime() - reminder.time * 60000;
-                        break;
-                    case 'start':
-                        reminderTime = new Date(nextCourse.start).getTime();
-                        break;
-                    default:
-                        console.error('未知的提醒条件:', reminder.condition);
-                        return;
-                }
-            } else {
-                errorSystem.show('当前没有课程信息', 'info');
-                return;
-            }
+            targetCourse = currentCourse;
+        } 
+        else if (getNextCourse()) {
+            targetCourse = getNextCourse();
+        }
+        else {
+            errorSystem.show('当前没有课程信息', 'info');
+            return;
+        }
+        switch (reminder.condition) {
+            case 'beforeStart':
+                   reminderTime = new Date(targetCourse .start).getTime() - reminder.time * 60000;
+                   break;
+            case 'beforeEnd':
+                reminderTime = new Date(targetCourse .end).getTime() - reminder.time * 60000;
+                break;
+            case 'afterEnd':
+                reminderTime = new Date(targetCourse .end).getTime() + reminder.time * 60000;
+                break;
+            case 'start':
+                reminderTime = new Date(targetCourse .start).getTime();
+                break;
+            case 'end':
+                reminderTime = new Date(targetCourse .end).getTime();
+                break;
+            default:
+                //console.error('未知的提醒条件:', reminder.condition);
+                //return;
         }
         if (reminderTime > now) {
             reminderQueue.addReminder({ time: reminderTime, condition: reminder.condition, audio: reminder.audio });
