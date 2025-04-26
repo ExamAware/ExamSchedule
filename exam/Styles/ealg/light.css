@@ -33,9 +33,27 @@ body::-webkit-scrollbar {
     display: none;
 }
 
-#fullscreen-btn, #settings-btn {
-    position: absolute;
+/* 删除这些样式
+#fullscreen-btn, #settings-btn { ... }
+#fullscreen-btn { ... }
+#settings-btn { ... }
+#settings-btn:hover, #fullscreen-btn:hover { ... }
+#settings-btn::before { ... }
+#fullscreen-btn::before { ... }
+*/
+
+/* 新的按钮组样式 */
+.top-btn-group {
+    position: fixed;
     top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    z-index: 1002;
+}
+
+.top-btn-group button {
     padding: 12px 24px;
     font-size: 1rem;
     cursor: pointer;
@@ -45,37 +63,33 @@ body::-webkit-scrollbar {
     border-radius: 20px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     transition: all 0.2s ease;
-    z-index: 1001;
     display: flex;
     align-items: center;
+    white-space: nowrap;
 }
 
-#fullscreen-btn {
-    right: 20px;
+.top-btn-group button::before {
+    font-family: 'Material Icons';
+    font-size: 20px;
+    margin-right: 8px;
 }
 
-#settings-btn {
-    right: 140px;
-}
-
-#settings-btn:hover, #fullscreen-btn:hover {
+.top-btn-group button:hover {
     background-color: #D0BCFF;
     transform: translateY(-1px);
     box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
 
-#settings-btn::before {
-    content: "settings";
-    font-family: 'Material Icons';
-    font-size: 20px;
-    margin-right: 4px;
-}
-
 #fullscreen-btn::before {
     content: "fullscreen";
-    font-family: 'Material Icons';
-    font-size: 20px;
-    margin-right: 4px;
+}
+
+#reminder-settings-btn::before {
+    content: "notifications";
+}
+
+#settings-btn::before {
+    content: "settings";
 }
 
 .container {
@@ -667,4 +681,212 @@ input:checked + .slider:before {
     color: #1C1B1F;
     border: 2px solid #E8DEF8;
     border-radius: 8px;
+}
+
+.settings-modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.3);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#reminder-modal-content {
+    background: #FFFFFF;
+    padding: 32px 48px 32px 32px;
+    border-radius: 28px;
+    width: 600px;
+    max-height: 60vh;
+    overflow-y: auto;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    z-index: 2100;
+}
+
+#reminder-modal-content {
+    width: 800px;
+    max-width: 90vw;
+}
+
+@media (max-width: 700px) {
+    #reminder-modal-content {
+        width: 95vw;
+        padding: 16px;
+    }
+}
+
+.top-btn-group {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 16px;
+    z-index: 1002;
+}
+
+.top-btn-group button {
+    padding: 12px 24px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #E8DEF8;
+    color: #1C1B1F;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+}
+
+.top-btn-group button:hover {
+    background-color: #D0BCFF;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* 按钮图标 */
+.top-btn-group button::before {
+    font-family: 'Material Icons';
+    font-size: 20px;
+    margin-right: 8px;
+}
+
+#fullscreen-btn::before {
+    content: "fullscreen";
+}
+
+#reminder-settings-btn::before {
+    content: "notifications";
+}
+
+#settings-btn::before {
+    content: "settings";
+}
+
+/* 提醒表格样式 */
+.reminder-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.reminder-table th,
+.reminder-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #E8DEF8;
+    font-size: 14px;
+    line-height: 36px;
+    vertical-align: middle;
+}
+
+.reminder-table th {
+    font-weight: 500;
+    color: #1C1B1F;
+    font-size: 14px;
+}
+
+.reminder-table select,
+.reminder-table input {
+    width: 100%;
+    height: 36px;
+    padding: 0 12px;
+    font-size: 14px;
+    background-color: #FFFFFF;
+    color: #1C1B1F;
+    border: 2px solid #E8DEF8;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.reminder-table button {
+    height: 36px;
+    min-width: 80px;
+    padding: 0 16px;
+    font-size: 14px;
+    background-color: #E8DEF8;
+    color: #1C1B1F;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.action-btn {
+    height: 36px;
+    font-size: 14px;
+    line-height: 36px;
+    padding: 0 16px;
+}
+
+.action-btn:hover {
+    background-color: #D0BCFF;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* 提醒时间输入框独立样式 */
+.reminder-table .reminder-time-input {
+    width: 80px;
+    height: 36px;
+    padding: 0 12px;
+    font-size: 14px;
+    background-color: #FFFFFF;
+    color: #1C1B1F;
+    border: 2px solid #E8DEF8;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.reminder-table .reminder-time-input:focus {
+    outline: none;
+    border-color: #6750A4;
+    background-color: #F7F2FA;
+}
+
+/* 提醒表格的时间输入框样式 */
+.reminder-table td input[type="number"] {
+    width: 80px !important;
+    text-align: center !important;
+    padding: 0 8px !important;
+    -moz-appearance: textfield !important;
+    margin: 0 auto !important;
+    display: block !important;
+}
+
+.reminder-table td input[type="number"]::-webkit-outer-spin-button,
+.reminder-table td input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* 确保修改其他输入框和选择框不受影响 */
+.reminder-table td select {
+    min-width: 200px;
+}
+
+.reminder-table td:nth-child(1) {
+    width: 50%;
+}
+
+.reminder-table td:nth-child(2) {
+    width: 15%;
+}
+
+.reminder-table td:nth-child(3) {
+    width: 25%;
+}
+
+.reminder-table td:nth-child(4) {
+    width: 10%;
 }

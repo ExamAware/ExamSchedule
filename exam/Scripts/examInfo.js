@@ -42,6 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (localConfig) {
             try {
                 const data = JSON.parse(localConfig);
+                window.examConfigData = data; // 暴露全局变量供提醒队列使用
                 displayExamInfo(data);
                 updateCurrentTime();
                 updateExamInfo(data);
@@ -58,6 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return fetch('exam_config.json', { cache: "no-store" })
             .then(response => response.json())
             .then(data => {
+                window.examConfigData = data; // 暴露全局变量供提醒队列使用
                 displayExamInfo(data);
                 updateCurrentTime();
                 updateExamInfo(data);

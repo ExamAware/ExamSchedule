@@ -12,9 +12,13 @@
     <div class="error-container">
         <div class="error-content" id="errorMessage"></div>
     </div>
+    <!-- 顶部按钮组 -->
+    <div class="top-btn-group">
+        <button id="fullscreen-btn">全屏</button>
+        <button id="reminder-settings-btn">提醒</button>
+        <button id="settings-btn">设置</button>
+    </div>
     <button id="return-btn" onclick="window.location.href = '../'">返回</button>
-    <button id="settings-btn">设置</button>
-    <button id="fullscreen-btn">全屏</button>
     <div class="container">
         <h1 id="examName">
             考试安排
@@ -156,9 +160,34 @@
             </div>
         </div>
     </div>
+    <!-- 新增提醒设置弹窗 -->
+    <div id="reminder-modal" class="settings-modal" style="display:none;">
+        <div id="reminder-modal-content" class="settings-panel dark-theme">
+            <h3>提醒设置</h3>
+            <table class="reminder-table" id="reminderTable">
+                <tr>
+                    <th>提醒条件</th>
+                    <th>时间（分钟）</th>
+                    <th>音频选择</th>
+                    <th>操作</th>
+                </tr>
+                <tr>
+                    <td colspan="4"><button class="action-btn" onclick="addReminder()">添加提醒</button></td>
+                </tr>
+            </table>
+            <div class="button-group">
+                <button id="save-reminder-btn" class="control-btn">保存</button>
+                <button id="close-reminder-btn" class="control-btn">关闭</button>
+            </div>
+        </div>
+    </div>
     <script src="Scripts/utils.js"></script>
+    <script src="Scripts/audioController.js"></script>
+    <script src="Scripts/reminderQueue.js"></script>
+    <script src="Scripts/reminderSettings.js"></script>
     <script src="Scripts/settings.js"></script>
     <script src="Scripts/examInfo.js"></script>
     <script src="Scripts/main.js"></script>
+    <script src="Scripts/reminderModal.js"></script>
 </body>
 </html>

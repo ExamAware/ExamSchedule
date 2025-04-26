@@ -16,6 +16,8 @@ function getCookie(name) {
     return null;
 }
 
+// 保持 setCookie/getCookie 兼容提醒设置
+
 function formatTimeWithoutSeconds(time) {
     return time.slice(0, -3);
 }

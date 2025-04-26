@@ -29,10 +29,12 @@
             list-style: none;
             padding: 0;
             margin: 0;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            display: flex;
+            justify-content: center;
             gap: 24px;
             animation: fadeInUp 1s ease-in-out;
+            width: 100%;
+            max-width: 800px;
         }
 
         /* 主导航按钮样式 */
@@ -51,6 +53,8 @@
             gap: 16px;
             min-width: 200px;
             text-align: center;
+            min-height: 140px; /* 增加高度以适应副标题 */
+            flex: 1;
         }
 
         ul a:hover {
@@ -155,6 +159,15 @@
         .about-link .material-icons {
             font-size: 18px;
         }
+
+        /* 添加新样式 */
+        .subtitle {
+            font-size: 14px;
+            color: #CAC4D0;
+            margin-top: 4px;
+            width: 100%;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -164,8 +177,9 @@
     </div>
     <ul>
         <li><a href="./time/"><span class="material-icons">schedule</span>电子钟表</a></li>
-        <li><a href="./exam/"><span class="material-icons">dashboard</span>考试看板</a></li>
-        <li><a href="./notification/"><span class="material-icons">campaign</span>考试广播</a></li>
+        <li><a href="./exam/"><span class="material-icons">dashboard</span>考试管理
+            <div class="subtitle">看板 & 广播</div>
+        </a></li>
     </ul>
 
     <!-- 添加关于链接和GitHub图标 -->

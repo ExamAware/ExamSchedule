@@ -1,3 +1,4 @@
+// ...复制 notification/scripts/reminderQueue.js 的全部内容...
 var reminderQueue = (function() {
     var queue = [];
     var audioCache = {};

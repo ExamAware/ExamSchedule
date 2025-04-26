@@ -1,3 +1,4 @@
+// ...复制 notification/scripts/audioController.js 的全部内容...
 var audioController = (function() {
     var audioPool = [];
     var maxPoolSize = 3;
