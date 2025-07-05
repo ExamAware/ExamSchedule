@@ -249,7 +249,8 @@
 
         #announcement-close:hover {
             background: #155a8a;
-       
+        }
+
         @keyframes floatY {
             0% {
                 transform: translateY(0);
@@ -316,17 +317,18 @@
     <div class="copyright">&copy; 2024-2025 ExamAware开发团队 版权所有</div>
 
     <!-- 公告弹窗 -->
-    <div id="announcement-modal" style="display:none; position:fixed; z-index:9999; left:0; top:0; width:100vw; height:100vh; background:rgba(18,18,18,0.75); justify-content:center; align-items:center;">
-        <div style="background:#232a34; color:#e3f2fd; border-radius:16px; max-width:90vw; min-width:320px; box-shadow:0 4px 24px rgba(25,118,210,0.18); padding:32px 24px 16px 24px; position:relative; display:flex; flex-direction:column; align-items:center;">
+    <div id="announcement-modal">
+        <div>
             <span style="font-size:22px; font-weight:500; margin-bottom:12px; color:#90caf9;">公告</span>
             <div id="announcement-content" style="font-size:16px; margin-bottom:24px; text-align:center;"></div>
             <button id="announcement-close" style="background:#1976d2; color:#fff; border:none; border-radius:8px; padding:8px 24px; font-size:15px; cursor:pointer; transition:background 0.2s;">关闭</button>
         </div>
-    <div class="poweredby-chuqiyun" style="width:100%;display:flex;justify-content:center;align-items:center;position:absolute;bottom:48px;left:0;z-index:10;">
+    </div>
+
+    <div class="poweredby-chuqiyun">
         <a href="https://chuqiyun.com">
             <img src="https://chuqiyun.com/static/images/poweredby.svg" alt="Powered by 楚奇云">
         </a>
-
     </div>
 
     <script>
