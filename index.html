@@ -194,6 +194,45 @@
             width: 100%;
             text-align: center;
         }
+
+        @keyframes floatY {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .poweredby-chuqiyun {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            bottom: 48px;
+            left: 0;
+            z-index: 10;
+        }
+
+        .poweredby-chuqiyun a {
+            display: inline-block;
+            /* 移除默认动画，改为悬停时触发 */
+            transition: transform 0.3s;
+        }
+
+        .poweredby-chuqiyun a:hover {
+            animation: floatY 2.5s ease-in-out infinite;
+        }
+
+        .poweredby-chuqiyun img {
+            height: 36px;
+        }
     </style>
 </head>
 
@@ -220,6 +259,12 @@
     </div>
 
     <div class="copyright">&copy; 2024-2025 ExamAware开发团队 版权所有</div>
+
+    <div class="poweredby-chuqiyun" style="width:100%;display:flex;justify-content:center;align-items:center;position:absolute;bottom:48px;left:0;z-index:10;">
+        <a href="https://chuqiyun.com">
+            <img src="https://chuqiyun.com/static/images/poweredby.svg" alt="Powered by 楚奇云">
+        </a>
+    </div>
 
     <script>
         function checkAprilFools() {
