@@ -249,6 +249,44 @@
 
         #announcement-close:hover {
             background: #155a8a;
+       
+        @keyframes floatY {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .poweredby-chuqiyun {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            bottom: 48px;
+            left: 0;
+            z-index: 10;
+        }
+
+        .poweredby-chuqiyun a {
+            display: inline-block;
+            /* 移除默认动画，改为悬停时触发 */
+            transition: transform 0.3s;
+        }
+
+        .poweredby-chuqiyun a:hover {
+            animation: floatY 2.5s ease-in-out infinite;
+        }
+
+        .poweredby-chuqiyun img {
+            height: 36px;
         }
     </style>
 </head>
@@ -284,6 +322,11 @@
             <div id="announcement-content" style="font-size:16px; margin-bottom:24px; text-align:center;"></div>
             <button id="announcement-close" style="background:#1976d2; color:#fff; border:none; border-radius:8px; padding:8px 24px; font-size:15px; cursor:pointer; transition:background 0.2s;">关闭</button>
         </div>
+    <div class="poweredby-chuqiyun" style="width:100%;display:flex;justify-content:center;align-items:center;position:absolute;bottom:48px;left:0;z-index:10;">
+        <a href="https://chuqiyun.com">
+            <img src="https://chuqiyun.com/static/images/poweredby.svg" alt="Powered by 楚奇云">
+        </a>
+
     </div>
 
     <script>
