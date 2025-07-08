@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 errorSystem.show('本地配置无效，已清除并切换至默认配置');
             }
         }
-        
+
         // 使用默认配置
         return fetch('exam_config.json', { cache: "no-store" })
             .then(response => response.json())
@@ -167,7 +167,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     const paperPages = document.getElementById('paper-pages');
                     const sheetCount = document.getElementById('sheet-count');
                     const sheetPages = document.getElementById('sheet-pages');
-                    
+
                     if (paperCount && paperPages && sheetCount && sheetPages) {
                         try {
                             const savedInfo = localStorage.getItem('paperInfo');
@@ -193,11 +193,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 const remainingMinutes = Math.floor((remainingTime % 3600) / 60);
                 const remainingSeconds = Math.floor(remainingTime % 60);
                 let remainingTimeText = '';
-                    if (remainingHours > 0) {
-                        remainingTimeText = `${remainingHours}时 ${String(remainingMinutes).padStart(2, '0')}分 ${String(remainingSeconds).padStart(2, '0')}秒`;
-                    } else {
-                        remainingTimeText = `${String(remainingMinutes).padStart(2, '0')}分 ${String(remainingSeconds).padStart(2, '0')}秒`;
-                    }
+                if (remainingHours > 0) {
+                    remainingTimeText = `${remainingHours}时 ${String(remainingMinutes).padStart(2, '0')}分 ${String(remainingSeconds).padStart(2, '0')}秒`;
+                } else {
+                    remainingTimeText = `${String(remainingMinutes).padStart(2, '0')}分 ${String(remainingSeconds).padStart(2, '0')}秒`;
+                }
                 if (remainingHours === 0 && remainingMinutes <= 14) {
                     if (remainingTimeElem) {
                         remainingTimeElem.textContent = `剩余时间: ${remainingTimeText}`;
@@ -289,14 +289,14 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             examTableBodyElem.innerHTML = "";
-            
+
             // 预处理日期和时间段
             const dateGroups = {};
             data.examInfos.forEach(exam => {
                 const start = new Date(exam.start);
                 const hour = start.getHours();
                 const dateStr = `${start.getMonth() + 1}月${start.getDate()}日<br>${hour < 12 ? '上午' : (hour < 18 ? '下午' : '晚上')}`;
-                
+
                 if (!dateGroups[dateStr]) {
                     dateGroups[dateStr] = [];
                 }
@@ -365,13 +365,14 @@ document.addEventListener("DOMContentLoaded", () => {
             const target = document.getElementById(btn.dataset.target);
             const action = btn.dataset.action;
             const currentValue = parseInt(target.value) || 0;
-            
-            if (action === 'increase') {
+
+            if (action === 'increase' && currentValue < 16) {
                 target.value = currentValue + 1;
             } else if (action === 'decrease' && currentValue > 0) {
                 target.value = currentValue - 1;
             }
-            
+
+
             // 保存到localStorage
             updatePaperInfo();
         });
@@ -381,10 +382,12 @@ document.addEventListener("DOMContentLoaded", () => {
     ['paper-count', 'paper-pages', 'sheet-count', 'sheet-pages'].forEach(id => {
         const input = document.getElementById(id);
         input.addEventListener('change', () => {
-            const value = parseInt(input.value) || 0;
-            input.value = Math.max(0, value); // 确保不小于0
+            let value = parseInt(input.value) || 0;
+            value = Math.min(16, Math.max(0, value)); // 限制在 0~16 之间
+            input.value = value;
             updatePaperInfo();
         });
+
     });
 
     function updatePaperInfo() {
