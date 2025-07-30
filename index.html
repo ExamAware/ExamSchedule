@@ -86,12 +86,32 @@
 
         .copyright {
             position: absolute;
-            bottom: 16px;
+            bottom: 48px;
             width: 100%;
             text-align: center;
             font-size: 14px;
             color: #90caf9;
             animation: fadeInUp 1s ease-in-out;
+        }
+
+        .beian-info {
+            position: absolute;
+            bottom: 16px;
+            width: 100%;
+            text-align: center;
+            font-size: 16px;
+            color: #90caf9;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        .beian-info a {
+            color: #90caf9;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .beian-info a:hover {
+            color: #e3f2fd;
         }
 
         .github-link {
@@ -271,7 +291,7 @@
             justify-content: center;
             align-items: center;
             position: absolute;
-            bottom: 48px;
+            bottom: 80px;
             left: 0;
             z-index: 10;
         }
@@ -319,6 +339,10 @@
     </div>
 
     <div class="copyright">&copy; 2024-2025 ExamAware开发团队 版权所有</div>
+
+    <div class="beian-info">
+        <a href="https://beian.miit.gov.cn/" target="_blank">津ICP备2025035356号-7</a>
+    </div>
 
     <!-- 公告弹窗 -->
     <div id="announcement-modal">
