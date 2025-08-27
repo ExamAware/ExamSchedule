@@ -11,7 +11,6 @@
             box-sizing: border-box;
             font-family: 'Microsoft YaHei', sans-serif;
         }
-        
         body {
             background-color: #f0f2f5;
             color: #333;
@@ -19,35 +18,35 @@
             padding: 20px;
             min-height: 100vh;
         }
-        
         .container {
-            max-width: 1200px;
+            max-width: 1600px;
             margin: 0 auto;
             background: #fff;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             overflow: hidden;
         }
-        
         .header {
             position: relative;
-            background: linear-gradient(135deg, #1e5799, #207cca);
-            color: white;
-            padding: 25px 30px;
-            text-align: center;
+            padding: 25px 30px 10px 30px;
+            text-align: left;
+            background: none;
         }
-        
         .header h1 {
-            font-size: 28px;
+            font-size: 32px;
             margin-bottom: 10px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            color: #1e5799;
+            text-shadow: none;
+            text-align: left;
+            font-weight: bold;
         }
-        
         .header p {
-            font-size: 18px;
-            opacity: 0.9;
+            font-size: 20px;
+            opacity: 1;
+            color: #1e5799;
+            text-align: left;
+            margin-bottom: 0;
         }
-        
         .offset-control-header {
             position: absolute;
             top: 20px;
@@ -56,52 +55,33 @@
             align-items: center;
             z-index: 10;
         }
-        .offset-control-header label {
-            margin-right: 8px;
-            font-size: 15px;
-            color: #fff;
-        }
-        .offset-control-header input {
-            width: 70px;
-            padding: 6px 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 15px;
-            margin-right: 8px;
-            text-align: center;
-        }
         .offset-control-header button {
             background: #1e5799;
             color: white;
             border: none;
-            padding: 6px 12px;
+            padding: 6px 16px;
             border-radius: 4px;
             cursor: pointer;
-            font-size: 15px;
-            margin-right: 8px;
+            font-size: 16px;
         }
-        .offset-control-header button:last-child {
-            margin-right: 0;
+        .offset-control-header button:hover {
+            background: #16457a;
         }
-        
         .main-content {
             display: flex;
             flex-wrap: wrap;
             padding: 20px;
         }
-        
         .left-column {
             flex: 1;
-            min-width: 300px;
+            min-width: 400px;
             padding: 20px;
         }
-        
         .right-column {
-            flex: 1;
-            min-width: 300px;
+            flex: 1.2;
+            min-width: 400px;
             padding: 20px;
         }
-        
         .card {
             background: #fff;
             border-radius: 8px;
@@ -110,153 +90,129 @@
             margin-bottom: 25px;
             border-top: 4px solid #1e5799;
         }
-        
         .card-title {
-            font-size: 22px;
+            font-size: 26px;
             color: #1e5799;
             margin-bottom: 20px;
             padding-bottom: 10px;
             border-bottom: 1px solid #eee;
+            font-weight: bold;
         }
-        
         .clock-container {
             text-align: center;
             margin: 20px 0;
         }
-        
         .date-display {
-            font-size: 22px;
+            font-size: 28px;
             color: #555;
             margin-bottom: 10px;
         }
-        
         .time-display {
-            font-size: 64px;
+            font-size: 110px;
             font-weight: bold;
             color: #1e5799;
             margin: 15px 0;
             font-family: 'Courier New', monospace;
             text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
         }
-        
-        .offset-control {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 20px 0;
-        }
-        
-        .offset-control label {
-            margin-right: 10px;
-            font-size: 16px;
-            color: #555;
-        }
-        
-        .offset-control input {
-            width: 80px;
-            padding: 8px 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 16px;
-            margin-right: 10px;
-            text-align: center;
-        }
-        
-        .offset-control button {
-            background: #1e5799;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background 0.3s;
-        }
-        
-        .offset-control button:hover {
-            background: #16457a;
-        }
-        
         .current-subject {
             background-color: #e8f4ff;
             border-left: 4px solid #1e5799;
-            padding: 20px;
+            padding: 30px;
             border-radius: 4px;
             margin-top: 15px;
         }
-        
         .subject-title {
-            font-size: 20px;
+            font-size: 38px;
             color: #1e5799;
-            margin-bottom: 10px;
+            margin-bottom: 18px;
+            font-weight: bold;
         }
-        
         .subject-time {
-            font-size: 18px;
+            font-size: 28px;
             color: #666;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
         }
-        
         .subject-status {
             display: inline-block;
-            padding: 5px 12px;
+            padding: 8px 20px;
             background: #1e5799;
             color: white;
             border-radius: 20px;
-            font-size: 14px;
-            margin-top: 8px;
+            font-size: 22px;
+            margin-top: 12px;
+            font-weight: bold;
         }
-        
+        .subject-remaining {
+            font-size: 26px;
+            color: #fa8c16;
+            margin-top: 16px;
+            font-weight: bold;
+        }
+        .subject-warning {
+            font-size: 26px;
+            color: #d4380d;
+            margin-top: 16px;
+            font-weight: bold;
+        }
         .exam-table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 10px;
         }
-        
+        .exam-table th, .exam-table td {
+            padding: 7px 10px;
+            font-size: 18px;
+            line-height: 1.2;
+        }
         .exam-table th {
             background-color: #f5f7fa;
-            padding: 12px 15px;
             text-align: left;
             font-weight: 600;
             color: #1e5799;
             border-bottom: 2px solid #e1e5eb;
         }
-        
         .exam-table td {
-            padding: 12px 15px;
             border-bottom: 1px solid #eee;
         }
-        
         .exam-table tr:nth-child(even) {
             background-color: #f9fafb;
         }
-        
         .exam-table tr:hover {
             background-color: #f0f7ff;
         }
-        
         .status-cell {
             font-weight: 500;
             border-radius: 4px;
             padding: 3px 8px;
             text-align: center;
+            font-size: 24px;
         }
-        
         .status-upcoming {
             background-color: #e6f4ff;
             color: #1677ff;
         }
-        
         .status-ongoing {
             background-color: #f6ffed;
             color: #52c41a;
         }
-        
         .status-finished {
             background-color: #fff2e8;
             color: #fa8c16;
         }
-        
+        .table-zoom-btn {
+            background: #1e5799;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 0 2px;
+        }
+        .table-zoom-btn:hover {
+            background: #16457a;
+        }
         .footer {
             text-align: center;
             padding: 20px;
@@ -264,55 +220,98 @@
             font-size: 14px;
             border-top: 1px solid #eee;
         }
-        
         .divider {
             height: 1px;
             background: #eee;
             margin: 10px 0 20px;
         }
-        
+        /* 设置弹窗样式 */
+        .settings-modal-bg {
+            display: none;
+            position: fixed;
+            left: 0; top: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.25);
+            z-index: 9999;
+        }
+        .settings-modal {
+            position: absolute;
+            left: 50%; top: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.18);
+            padding: 32px 40px 24px 40px;
+            min-width: 340px;
+        }
+        .settings-modal h3 {
+            font-size: 22px;
+            color: #1e5799;
+            margin-bottom: 18px;
+        }
+        .settings-modal label {
+            font-size: 16px;
+            color: #333;
+            margin-right: 10px;
+        }
+        .settings-modal input {
+            font-size: 16px;
+            padding: 6px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            width: 120px;
+        }
+        .settings-modal .modal-btn {
+            background: #1e5799;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 7px 18px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .settings-modal .modal-btn:last-child {
+            margin-right: 0;
+        }
         /* 响应式设计 */
         @media (max-width: 768px) {
             .main-content {
                 flex-direction: column;
             }
-            
             .left-column, .right-column {
                 width: 100%;
             }
-            
             .time-display {
-                font-size: 48px;
+                font-size: 60px;
             }
-            
             .header h1 {
                 font-size: 24px;
             }
+            .card-title {
+                font-size: 20px;
+            }
+            .subject-title {
+                font-size: 26px;
+            }
+            .subject-time, .subject-status, .subject-remaining, .subject-warning {
+                font-size: 18px;
+            }
         }
-        
         @media (max-width: 480px) {
             .header {
                 padding: 15px;
             }
-            
             .time-display {
                 font-size: 36px;
             }
-            
             .date-display {
                 font-size: 18px;
             }
-            
-            .offset-control {
+            .offset-control-header {
                 flex-direction: column;
-            }
-            
-            .offset-control label {
-                margin-bottom: 8px;
-            }
-            
-            .offset-control input {
-                margin: 0 0 8px 0;
+                top: 10px;
+                right: 10px;
             }
         }
     </style>
@@ -321,45 +320,36 @@
     <div class="container">
         <div class="header">
             <div class="offset-control-header">
-                <label for="offset-input-header">时间偏移(秒):</label>
-                <input type="number" id="offset-input-header" value="0">
-                <button id="apply-offset-header">应用</button>
+                <button id="settings-btn">设置</button>
             </div>
             <h1 id="exam-name"></h1>
             <p id="message"></p>
             <p id="room"></p>
         </div>
-        
         <div class="main-content">
             <div class="left-column">
                 <div class="card">
                     <h2 class="card-title">考试时钟</h2>
                     <div class="clock-container">
-                        <div class="date-display" id="date-display">2025年7月6日 星期日</div>
-                        <div class="time-display" id="time-display">09:00:00</div>
+                        <div class="date-display" id="date-display"></div>
+                        <div class="time-display" id="time-display"></div>
                     </div>
                 </div>
-                
                 <div class="card">
                     <h2 class="card-title">当前科目</h2>
-                    <div id="current-subject-info" class="current-subject">
-                        <div class="subject-title">语文</div>
-                        <div class="subject-time">开始时间: 2025-07-06 09:00</div>
-                        <div class="subject-time">结束时间: 2025-07-06 11:30</div>
-                        <div class="subject-status">进行中</div>
-                    </div>
+                    <div id="current-subject-info" class="current-subject"></div>
                 </div>
             </div>
-            
             <div class="right-column">
                 <div class="card">
                     <h2 class="card-title">所有考试科目</h2>
-                    <table class="exam-table">
+                    <table class="exam-table" id="exam-table">
                         <thead>
                             <tr>
+                                <th>日期</th>
                                 <th>科目</th>
-                                <th>开始时间</th>
-                                <th>结束时间</th>
+                                <th>开始</th>
+                                <th>结束</th>
                                 <th>状态</th>
                             </tr>
                         </thead>
@@ -370,12 +360,28 @@
                 </div>
             </div>
         </div>
-        
         <div class="footer">
             <p>考试看板系统 © 2025</p>
         </div>
     </div>
-
+    <!-- 设置弹窗 -->
+    <div class="settings-modal-bg" id="settings-modal-bg">
+        <div class="settings-modal">
+            <h3>设置</h3>
+            <div>
+                <label for="modal-offset-input">时间偏移(秒):</label>
+                <input type="number" id="modal-offset-input" value="0">
+            </div>
+            <div>
+                <label for="modal-zoom-input">页面缩放(%)：</label>
+                <input type="number" id="modal-zoom-input" value="100" min="50" max="200">
+            </div>
+            <div style="margin-top:18px;">
+                <button class="modal-btn" id="modal-save-btn">保存</button>
+                <button class="modal-btn" id="modal-cancel-btn">取消</button>
+            </div>
+        </div>
+    </div>
     <script>
         // 兼容IE的AJAX加载JSON
         function loadExamData(callback) {
@@ -393,29 +399,51 @@
             };
             xhr.send();
         }
-
         // 页面元素
         var timeDisplay = document.getElementById('time-display');
         var dateDisplay = document.getElementById('date-display');
-        var offsetInputHeader = document.getElementById('offset-input-header');
-        var applyOffsetBtnHeader = document.getElementById('apply-offset-header');
         var currentSubjectInfo = document.getElementById('current-subject-info');
         var allSubjectsTable = document.getElementById('all-subjects');
         var examNameElem = document.getElementById('exam-name');
         var messageElem = document.getElementById('message');
         var roomElem = document.getElementById('room');
-
+        var settingsBtn = document.getElementById('settings-btn');
+        var settingsModalBg = document.getElementById('settings-modal-bg');
+        var modalOffsetInput = document.getElementById('modal-offset-input');
+        var modalZoomInput = document.getElementById('modal-zoom-input');
+        var modalSaveBtn = document.getElementById('modal-save-btn');
+        var modalCancelBtn = document.getElementById('modal-cancel-btn');
+        var examTable = document.getElementById('exam-table');
         // 时间偏移量（秒）
         var timeOffset = 0;
+        var pageZoom = 100;
         var examData = null;
-
-        // 应用时间偏移
-        applyOffsetBtnHeader.onclick = function() {
-            var offsetValue = parseInt(offsetInputHeader.value, 10) || 0;
+        // 设置弹窗逻辑
+        settingsBtn.onclick = function() {
+            modalOffsetInput.value = timeOffset;
+            modalZoomInput.value = pageZoom;
+            settingsModalBg.style.display = 'block';
+        };
+        modalCancelBtn.onclick = function() {
+            settingsModalBg.style.display = 'none';
+        };
+        modalSaveBtn.onclick = function() {
+            var offsetValue = parseInt(modalOffsetInput.value, 10) || 0;
+            var zoomValue = parseInt(modalZoomInput.value, 10);
+            if (zoomValue < 50) zoomValue = 50;
+            if (zoomValue > 200) zoomValue = 200;
             timeOffset = offsetValue;
+            pageZoom = zoomValue;
+            document.body.style.zoom = pageZoom + '%';
+            settingsModalBg.style.display = 'none';
             updateClock();
         };
-
+        // 点击遮罩关闭弹窗
+        settingsModalBg.onclick = function(e) {
+            if (e.target === settingsModalBg) {
+                settingsModalBg.style.display = 'none';
+            }
+        };
         // 加载考试数据并初始化
         loadExamData(function(data) {
             if (!data) {
@@ -431,42 +459,34 @@
             updateClock();
             setInterval(updateClock, 1000);
         });
-
         // 更新时钟
         function updateClock() {
             var now = new Date();
             var adjustedTime = new Date(now.getTime() + timeOffset * 1000);
-
             // 格式化日期
             var year = adjustedTime.getFullYear();
             var month = adjustedTime.getMonth() + 1;
             var date = adjustedTime.getDate();
             var day = adjustedTime.getDay();
             var days = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
-
             // 格式化时间
             var hours = ('0' + adjustedTime.getHours()).slice(-2);
             var minutes = ('0' + adjustedTime.getMinutes()).slice(-2);
             var seconds = ('0' + adjustedTime.getSeconds()).slice(-2);
-
             dateDisplay.textContent = year + '年' + month + '月' + date + '日 ' + days[day];
             timeDisplay.textContent = hours + ':' + minutes + ':' + seconds;
-
             if (examData) {
                 updateSubjectInfo(adjustedTime);
             }
         }
-
-        // 更新科目信息
+        // 当前科目展示
         function updateSubjectInfo(now) {
             var currentSubject = null;
             var nextSubject = null;
             var allSubjectsHTML = '';
-
-            examData.examInfos.forEach(function(subject) {
+            examData.examInfos.forEach(function(subject, idx) {
                 var startTime = new Date(subject.start);
                 var endTime = new Date(subject.end);
-
                 var status, statusClass;
                 if (now < startTime) {
                     status = '未开始';
@@ -479,49 +499,61 @@
                     status = '已结束';
                     statusClass = 'status-finished';
                 }
-
                 if (!nextSubject && now < startTime) {
                     nextSubject = subject;
                 }
-
+                // 表格行
                 allSubjectsHTML +=
                     '<tr>' +
+                        '<td>' + formatTableDate(startTime) + '</td>' +
                         '<td>' + subject.name + '</td>' +
-                        '<td>' + formatDateTime(startTime) + '</td>' +
-                        '<td>' + formatDateTime(endTime) + '</td>' +
+                        '<td>' + formatTableTime(startTime) + '</td>' +
+                        '<td>' + formatTableTime(endTime) + '</td>' +
                         '<td class="status-cell ' + statusClass + '">' + status + '</td>' +
                     '</tr>';
             });
-
             allSubjectsTable.innerHTML = allSubjectsHTML;
-
+            // 当前科目展示
             try {
+                var html = '';
                 if (currentSubject) {
                     var startTime = new Date(currentSubject.start);
                     var endTime = new Date(currentSubject.end);
-
-                    currentSubjectInfo.innerHTML =
+                    var nowMs = now.getTime();
+                    var endMs = endTime.getTime();
+                    var startMs = startTime.getTime();
+                    var remainSec = Math.floor((endMs - nowMs) / 1000);
+                    var remainMin = Math.floor(remainSec / 60);
+                    var remainStr = '';
+                    var warningStr = '';
+                    if (remainSec > 0) {
+                        remainStr = '<div class="subject-remaining">剩余时间：' + remainMin + '分钟</div>';
+                        if (remainMin <= 15) {
+                            warningStr = '<div class="subject-warning">考试即将结束</div>';
+                        }
+                    }
+                    html =
                         '<div class="subject-title">' + currentSubject.name + '</div>' +
-                        '<div class="subject-time">开始时间: ' + formatDateTime(startTime) + '</div>' +
-                        '<div class="subject-time">结束时间: ' + formatDateTime(endTime) + '</div>' +
-                        '<div class="subject-status">进行中</div>';
+                        '<div class="subject-time">' + formatTableTime(startTime) + ' - ' + formatTableTime(endTime) + '</div>' +
+                        '<div class="subject-status">进行中</div>' +
+                        remainStr +
+                        warningStr;
                     currentSubjectInfo.style.borderLeftColor = '#1e5799';
                 } else if (nextSubject) {
                     var startTime2 = new Date(nextSubject.start);
                     var endTime2 = new Date(nextSubject.end);
-
-                    currentSubjectInfo.innerHTML =
+                    html =
                         '<div class="subject-title">' + nextSubject.name + '</div>' +
-                        '<div class="subject-time">开始时间: ' + formatDateTime(startTime2) + '</div>' +
-                        '<div class="subject-time">结束时间: ' + formatDateTime(endTime2) + '</div>' +
+                        '<div class="subject-time">' + formatTableTime(startTime2) + ' - ' + formatTableTime(endTime2) + '</div>' +
                         '<div class="subject-status">即将开始</div>';
                     currentSubjectInfo.style.borderLeftColor = '#1677ff';
                 } else {
-                    currentSubjectInfo.innerHTML =
+                    html =
                         '<div class="subject-title">当前无考试</div>' +
                         '<div class="subject-time">所有考试科目已结束</div>';
                     currentSubjectInfo.style.borderLeftColor = '#999';
                 }
+                currentSubjectInfo.innerHTML = html;
             } catch (e) {
                 currentSubjectInfo.innerHTML =
                     '<div class="subject-title">当前科目信息加载失败</div>' +
@@ -529,15 +561,26 @@
                 currentSubjectInfo.style.borderLeftColor = '#999';
             }
         }
-
-        function formatDateTime(date) {
-            var year = date.getFullYear();
-            var month = ('0' + (date.getMonth() + 1)).slice(-2);
-            var day = ('0' + date.getDate()).slice(-2);
-            var hours = ('0' + date.getHours()).slice(-2);
-            var minutes = ('0' + date.getMinutes()).slice(-2);
-            return year + '-' + month + '-' + day + ' ' + hours + ':' + minutes;
+        // 表格日期 MM/DD
+        function formatTableDate(date) {
+            var m = ('0' + (date.getMonth() + 1)).slice(-2);
+            var d = ('0' + date.getDate()).slice(-2);
+            return m + '/' + d;
         }
+        // 表格时间 HH:MM
+        function formatTableTime(date) {
+            var h = ('0' + date.getHours()).slice(-2);
+            var m = ('0' + date.getMinutes()).slice(-2);
+            return h + ':' + m;
+        }
+        // 表格放大缩小
+        window.setTableZoom = function(delta) {
+            var curSize = parseInt(examTable.style.fontSize || '18', 10);
+            var newSize = curSize + delta * 2;
+            if (newSize < 12) newSize = 12;
+            if (newSize > 32) newSize = 32;
+            examTable.style.fontSize = newSize + 'px';
+        };
     </script>
 </body>
 </html>
